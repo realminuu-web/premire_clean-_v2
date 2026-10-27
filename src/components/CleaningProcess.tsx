@@ -210,7 +210,7 @@ export default function CleaningProcess() {
             </button>
 
             {/* Tap Hint for Mobile */}
-            <div className="absolute bottom-2.5 left-1/2 -translate-x-1/2 bg-black/60 backdrop-blur-sm text-white/90 text-[11px] px-3 py-1 rounded-full pointer-events-none font-medium">
+            <div className="absolute bottom-2.5 left-1/2 -translate-x-1/2 bg-black/60 backdrop-blur-sm text-white/90 text-xs px-3 py-1 rounded-full pointer-events-none font-medium">
               {process.hint}
             </div>
           </div>

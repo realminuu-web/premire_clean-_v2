@@ -14,7 +14,7 @@ type Props = {
   flipAfter?: number;
 };
 
-const tag = 'absolute top-2.5 z-10 flex items-center gap-1 rounded-md px-2.5 py-1 text-[11px] font-semibold text-white backdrop-blur-md transition-opacity duration-700';
+const tag = 'absolute top-2.5 z-10 flex items-center gap-1 rounded-md px-2.5 py-1 text-xs font-semibold text-white backdrop-blur-md transition-opacity duration-700';
 
 /**
  * 후기 사진. 전·후 사진이 둘 다 있으면 "청소 전"을 잠깐 보여 준 뒤 부드럽게 "청소 후"로 바뀝니다.

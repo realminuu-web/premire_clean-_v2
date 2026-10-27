@@ -1,6 +1,8 @@
 import 'server-only';
 import { cacheLife, cacheTag } from 'next/cache';
 import { defaultContent, type SiteContent } from '@/config/site';
+import { OLD_DEFAULTS } from '@/config/copyUpdates';
+import { getAt, setAt } from '@/config/editorSchema';
 import type { ReviewItem, StoredReview } from '@/types';
 import { readKV } from './store';
 
@@ -35,7 +37,13 @@ export function mergeContent<T>(base: T, override: unknown): T {
  */
 export function buildContent(override: unknown): SiteContent {
   const defaults = defaultContent();
-  const content = mergeContent(defaults, override ?? {});
+  let content = mergeContent(defaults, override ?? {});
+  // 사장님이 손대지 않은 칸(예전 기본값 그대로)은 새 기본 문구로 바꿉니다
+  for (const { path, old } of OLD_DEFAULTS) {
+    if (JSON.stringify(getAt(content, path)) === JSON.stringify(old)) {
+      content = setAt(content, path, structuredClone(getAt(defaults, path)));
+    }
+  }
   const order = content.sectionOrder.filter((id) => defaults.sectionOrder.includes(id));
   defaults.sectionOrder.forEach((id, i) => {
     if (order.includes(id)) return;

@@ -90,7 +90,7 @@ export default function InstagramFeed() {
               className="w-full h-full bg-cover bg-center transition-transform duration-500 group-hover:scale-105"
               style={{ backgroundImage: `url('${singlePost.image}')` }}
             />
-            <div className="absolute top-3 left-3 bg-slate-900/80 backdrop-blur-md text-white text-[11px] font-semibold px-2.5 py-1 rounded-lg flex items-center gap-1.5">
+            <div className="absolute top-3 left-3 bg-slate-900/80 backdrop-blur-md text-white text-xs font-semibold px-2.5 py-1 rounded-lg flex items-center gap-1.5">
               <span>최신 현장 하이라이트</span>
               <ExternalLink className="w-3 h-3 text-slate-300" strokeWidth={1.75} />
             </div>
@@ -166,10 +166,10 @@ export default function InstagramFeed() {
                   </div>
                 </div>
                 <div className="space-y-1">
-                  <p className="text-[10px] text-slate-200 line-clamp-2 leading-tight">
+                  <p className="text-xs text-slate-200 line-clamp-2 leading-tight">
                     {post.caption}
                   </p>
-                  <p className="text-[9px] text-blue-300 font-medium flex items-center gap-1">
+                  <p className="text-xs text-blue-300 font-medium flex items-center gap-1">
                     <span>인스타그램에서 보기</span>
                     <ExternalLink className="w-2.5 h-2.5" strokeWidth={1.75} />
                   </p>
@@ -182,7 +182,7 @@ export default function InstagramFeed() {
 
       {/* Bottom Subtitle / Tag */}
       <div className="text-center pt-2">
-        <p className="text-[11px] text-slate-400 font-normal">
+        <p className="text-xs text-slate-400 font-normal">
           #프리미어클린 #입주청소 #이사청소 #사무실청소 #청소의기준 태그로 고객님들의 실시간 후기를 확인해 보세요.
         </p>
       </div>

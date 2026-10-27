@@ -99,7 +99,7 @@ export default async function Image() {
               margin: 0,
             }}
           >
-            <span>보이지 않는 곳까지 완벽하게,</span>
+            <span>보이지 않는 곳까지 꼼꼼하게,</span>
             <span style={{ color: '#60a5fa' }}>프리미어 클린이 기준을 만듭니다.</span>
           </h1>
           <p

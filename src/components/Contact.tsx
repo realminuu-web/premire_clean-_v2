@@ -155,12 +155,12 @@ export default function Contact() {
               <div className="space-y-3 text-xs text-slate-600">
                 {t.steps.map((step, i) => (
                   <div key={i} className="flex items-start gap-3">
-                    <span className="w-5 h-5 rounded-full bg-blue-700 text-white font-bold flex items-center justify-center flex-shrink-0 text-[11px]">
+                    <span className="w-5 h-5 rounded-full bg-blue-700 text-white font-bold flex items-center justify-center flex-shrink-0 text-xs">
                       {i + 1}
                     </span>
                     <div>
                       <strong className="text-slate-900 font-semibold">{step.title}</strong>
-                      <p className="text-[11px] text-slate-500 font-normal">{step.description}</p>
+                      <p className="text-xs text-slate-500 font-normal">{step.description}</p>
                     </div>
                   </div>
                 ))}

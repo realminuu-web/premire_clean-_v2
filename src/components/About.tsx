@@ -94,7 +94,7 @@ export default function About() {
                       <ActiveIcon className="w-6 h-6" strokeWidth={1.75} />
                     </div>
                     <div>
-                      <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-blue-50 text-blue-700 border border-blue-200">
+                      <span className="text-xs font-bold px-2 py-0.5 rounded-full bg-blue-50 text-blue-700 border border-blue-200">
                         {activeValue.badge}
                       </span>
                       <h3 className="text-lg font-bold text-slate-900 mt-0.5">
@@ -135,7 +135,7 @@ export default function About() {
                     <CheckCircle2 className="w-4 h-4 text-emerald-500" strokeWidth={2} />
                     <span>{activeValue.highlight}</span>
                   </span>
-                  <span className="text-[11px] text-slate-400 font-medium">
+                  <span className="text-xs text-slate-400 font-medium">
                     {activeTab + 1} / {values.length}
                   </span>
                 </div>
@@ -167,7 +167,7 @@ export default function About() {
                     >
                       <Icon className="w-6 h-6" strokeWidth={1.75} />
                     </div>
-                    <span className="text-[11px] font-bold px-2.5 py-1 rounded-full bg-slate-100 text-slate-600 group-hover:bg-blue-600 group-hover:text-white transition-colors">
+                    <span className="text-xs font-bold px-2.5 py-1 rounded-full bg-slate-100 text-slate-600 group-hover:bg-blue-600 group-hover:text-white transition-colors">
                       {item.badge}
                     </span>
                   </div>

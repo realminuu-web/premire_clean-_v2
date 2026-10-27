@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import { X } from 'lucide-react';
 import { getAt, setAt, type Field } from '@/config/editorSchema';
-import { allKeywords } from '@/lib/seo';
+import { allKeywords, serviceAreas } from '@/lib/seo';
 import type { ContentDraft } from './AdminApp';
 import { SaveBar } from './AdminApp';
 import { Card, ImageInput, inputCls, PageTitle } from './ui';
@@ -115,12 +115,21 @@ export default function SeoPanel({ draft }: { draft: ContentDraft }) {
           values={c.seo.keywords}
           onChange={(v) => set('seo.keywords', v)}
         />
-        <TagEditor
-          label="서비스 지역"
-          loc="📍 어디서 일하는지 검색엔진·AI에 알려 줍니다. '서울 강남구'처럼 적어요"
-          values={c.seo.areas}
-          onChange={(v) => set('seo.areas', v)}
-        />
+        <div className="space-y-2">
+          <div>
+            <p className="text-sm font-bold">서비스 지역</p>
+            <p className="text-[13px] text-slate-500">
+              📍 어디서 일하는지 검색엔진·AI에 알려 줘요. 홈페이지 [서비스 지역] 섹션 목록을 그대로 써요. 고치려면 [문구 수정] &gt; 서비스 지역으로 가세요.
+            </p>
+          </div>
+          <div className="flex flex-wrap gap-1.5">
+            {serviceAreas(c).map((a) => (
+              <span key={a} className="rounded-full bg-slate-100 px-3 py-1 text-sm font-semibold text-slate-700">
+                {a}
+              </span>
+            ))}
+          </div>
+        </div>
         <TagEditor
           label="지역 조합에 쓸 서비스"
           loc={`📍 서비스 지역과 합쳐 "강남구 입주청소" 같은 태그를 자동으로 만들어요. 지금 자동 태그 ${combos}개`}

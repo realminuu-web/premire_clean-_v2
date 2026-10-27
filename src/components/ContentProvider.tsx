@@ -39,7 +39,11 @@ export function useReviews(): ReviewItem[] {
 
 export function scrollToId(id: string, offset = 75) {
   const el = document.querySelector(id);
-  if (!el) return;
+  // 상세 페이지처럼 그 섹션이 없는 곳에서는 홈페이지의 그 위치로 갑니다
+  if (!el) {
+    window.location.href = `/${id}`;
+    return;
+  }
   const top = el.getBoundingClientRect().top + window.pageYOffset - offset;
   window.scrollTo({ top, behavior: 'smooth' });
 }

@@ -38,7 +38,7 @@ export default function TrustBadges() {
             </div>
           </div>
 
-          <div className="inline-flex items-center gap-1.5 text-[11px] font-semibold text-emerald-700 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200/80 self-start sm:self-auto">
+          <div className="inline-flex items-center gap-1.5 text-xs font-semibold text-emerald-700 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200/80 self-start sm:self-auto">
             <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" strokeWidth={2} />
             <span>{trust.seal}</span>
           </div>
@@ -66,7 +66,7 @@ export default function TrustBadges() {
                 {/* Text Block */}
                 <div className="min-w-0 flex-1">
                   <div className="flex items-center gap-1.5 flex-wrap">
-                    <span className="text-[10px] font-black text-blue-700 bg-blue-100/70 group-hover:bg-blue-600 group-hover:text-white px-2 py-0.5 rounded-md transition-colors">
+                    <span className="text-xs font-black text-blue-700 bg-blue-100/70 group-hover:bg-blue-600 group-hover:text-white px-2 py-0.5 rounded-md transition-colors">
                       {item.badge}
                     </span>
                     <h3 className="text-xs sm:text-sm font-black text-slate-900 group-hover:text-blue-700 transition-colors truncate">
@@ -74,11 +74,11 @@ export default function TrustBadges() {
                     </h3>
                   </div>
 
-                  <p className="text-[11px] sm:text-xs font-bold text-blue-600 mt-0.5 break-keep">
+                  <p className="text-xs font-bold text-blue-600 mt-0.5 break-keep">
                     {item.subtitle}
                   </p>
 
-                  <p className="text-[11px] text-slate-500 mt-1 leading-snug line-clamp-2 hidden sm:block font-normal">
+                  <p className="text-xs text-slate-500 mt-1 leading-snug line-clamp-2 hidden sm:block font-normal">
                     {item.description}
                   </p>
                 </div>

@@ -34,7 +34,7 @@ export default function Footer() {
             <ul className="space-y-2 text-xs font-normal">
               {footer.quickLinks.map((link) => (
                 <li key={link.name}>
-                  <a href={link.href} className="hover:text-white transition-colors">{link.name}</a>
+                  <a href={link.href.startsWith('#') ? `/${link.href}` : link.href} className="hover:text-white transition-colors">{link.name}</a>
                 </li>
               ))}
             </ul>
@@ -67,7 +67,7 @@ export default function Footer() {
         </div>
 
         {/* Business Registration Details & Copyright */}
-        <div className="pt-8 border-t border-slate-900 flex flex-col md:flex-row items-center justify-between gap-4 text-[11px] text-slate-500">
+        <div className="pt-8 border-t border-slate-900 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-slate-500">
           <div className="space-y-1 text-center md:text-left break-keep font-normal">
             <p>
               {company.corporateName} | 대표자: {company.ceo} | 사업자등록번호: {company.businessNumber} | 통신판매업신고: {company.telecomSalesNumber}
@@ -80,7 +80,7 @@ export default function Footer() {
           <div className="flex items-center gap-2 text-center md:text-right font-normal">
             <span>{footer.copyright}</span>
             <span className="text-slate-800">|</span>
-            <a href="/admin" className="text-slate-600 hover:text-slate-400 text-[10px] transition-colors" rel="nofollow">
+            <a href="/admin" className="text-slate-600 hover:text-slate-400 text-xs transition-colors" rel="nofollow">
               관리자
             </a>
           </div>

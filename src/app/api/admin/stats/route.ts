@@ -4,6 +4,9 @@ import { readEvents } from '@/lib/store';
 const SECTION_NAMES: Record<string, string> = {
   hero: '첫 화면',
   services: '서비스',
+  products: '상품 카드',
+  areas: '서비스 지역',
+  proof: '증명 자료',
   trust: '안심 보증',
   process: '비포·애프터',
   about: '시공 원칙',

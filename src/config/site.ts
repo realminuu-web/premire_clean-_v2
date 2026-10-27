@@ -8,6 +8,9 @@ import {
   SectionId,
   ServiceDetail,
   TeamMember,
+  ProductItem,
+  AreaGroup,
+  ProofItem,
 } from '@/types';
 
 /**
@@ -26,18 +29,22 @@ import {
 export const siteConfig = {
   // -----------------------------------------------------------------------
   // 0. 📑 섹션 배치 순서 & 보이기/숨기기
-  // 'hero' 첫 화면 · 'services' 서비스 · 'trustBadges' 안심 보증 · 'process' 구역별 비포·애프터
-  // 'about' 시공 원칙 · 'reviews' 시공 후기 · 'instagram' 인스타그램 · 'contact' 견적 신청 · 'faq' 자주 묻는 질문
+  // 'hero' 첫 화면 · 'services' 서비스 · 'products' 상품 카드 · 'trustBadges' 안심 보증 · 'proof' 증명 자료
+  // 'process' 구역별 비포·애프터 · 'about' 시공 원칙 · 'team' 팀 소개 · 'reviews' 시공 후기
+  // 'instagram' 인스타그램 · 'areas' 서비스 지역 · 'contact' 견적 신청 · 'faq' 자주 묻는 질문
   // -----------------------------------------------------------------------
   sectionOrder: [
     'hero',
     'services',
+    'products',
     'trustBadges',
+    'proof',
     'process',
     'about',
     'team',
     'reviews',
     'instagram',
+    'areas',
     'contact',
     'faq',
   ] as SectionId[],
@@ -46,12 +53,15 @@ export const siteConfig = {
   visibility: {
     hero: true,
     services: true,
+    products: true,
     trustBadges: true,
+    proof: true,
     process: true,
     about: true,
     team: true,
     reviews: true,
     instagram: false, // 인스타 연동 전까지 숨김
+    areas: true,
     contact: true,
     faq: true,
   } as Record<SectionId, boolean>,
@@ -80,7 +90,7 @@ export const siteConfig = {
     kakaoChatUrl: 'https://open.kakao.com',
     instagramUrl: 'https://instagram.com',
     instagramHandle: 'premierclean_official',
-    formSubtitle: '원하시는 공간과 일정에 맞춰 최적의 맞춤 견적을 1분 만에 신속히 1:1 안내해 드립니다.',
+    formSubtitle: '공간과 일정을 알려 주시면 맞춤 견적을 안내해 드립니다.',
   },
 
   // -----------------------------------------------------------------------
@@ -110,13 +120,7 @@ export const siteConfig = {
     // AI 검색이 인용하기 좋은 한 문단 회사 소개 (llms.txt 와 구조화 데이터에 쓰입니다)
     aiSummary:
       '프리미어 클린은 서울과 경기 지역에서 입주청소, 이사청소, 거주 중 대청소, 사무실 정기청소, 상가·매장 청소, 건물 공용부 청소, 준공·인테리어 후 청소를 하는 청소 전문 업체입니다. 본사 직영 팀이 직접 작업하고, 서랍·후드 필터·창틀 레일처럼 잘 보이지 않는 곳까지 분리해 닦습니다. 견적은 평수와 공간 상태를 기준으로 정하며, 견적서에 적은 금액 외 현장 추가금을 받지 않습니다.',
-    // 서비스 지역 (검색엔진·AI에 "어디서 일하는지" 알려 줍니다)
-    areas: [
-      '서울 강남구', '서울 서초구', '서울 송파구', '서울 강동구', '서울 마포구', '서울 용산구',
-      '서울 성동구', '서울 광진구', '서울 영등포구', '서울 양천구', '서울 강서구', '서울 노원구',
-      '경기 성남시', '경기 용인시', '경기 하남시', '경기 수원시', '경기 고양시', '경기 남양주시',
-      '경기 화성시', '경기 안양시', '경기 부천시', '경기 광명시', '경기 과천시', '경기 구리시',
-    ],
+    // 서비스 지역은 아래 'areas'(서비스 지역 섹션) 목록 하나를 검색엔진·AI에도 그대로 씁니다.
     // 지역 조합 태그에 쓰는 대표 서비스 (예: "강남구 입주청소")
     areaKeywordServices: ['입주청소', '이사청소', '사무실청소'],
     keywords: [
@@ -150,8 +154,8 @@ export const siteConfig = {
   // -----------------------------------------------------------------------
   services: {
     title1: '주거와 비즈니스,',
-    title2: '모든 공간의 최상위 클리닝',
-    description: '프리미어 클린은 프리미엄 주거 홈클리닝과 오피스·상가 상업공간 관리를 동등한 100% 직영 마스터 공정으로 완성합니다.',
+    title2: '공간에 맞춘 청소',
+    description: '집과 사무실·상가 모두 같은 직영 팀이 같은 기준으로 청소합니다.',
     tabHome: '홈클리닝',
     tabCommercial: '사업장 클리닝',
     areasLabel: '주요 케어 영역',
@@ -162,13 +166,13 @@ export const siteConfig = {
       id: 'home-cleaning',
       category: 'home',
       eyebrow: 'HOME CLEANING',
-      badge: '주거 전문 마스터',
+      badge: '주거 청소',
       title: '홈클리닝 (Home Cleaning)',
-      description: '가장 소중한 안식처를 호텔 스위트룸처럼. 미세먼지, 분진가루, 숨은 세균까지 박멸하는 주거 전문 올인원 솔루션',
+      description: '입주·이사·거주 청소. 공사 분진과 묵은 때를 서랍 안쪽까지 닦아 냅니다.',
       highlights: ['입주 / 이사 청소', '거주 대청소 & 부분 특수케어', '친환경 피톤치드 살균 서비스', '창틀·등기구·배수구 완전 분해 세척'],
       features: [
         '신축 아파트 벽면 도배풀, 시멘트 가루, 새집증후군 유발 물질 제거',
-        '주방 상·하부장 선반, 걸레받이, 후드 필터 기름때 고온 스팀 박멸',
+        '주방 상·하부장 선반, 걸레받이, 후드 필터 기름때 고온 스팀 세척',
         '화장실 배수구, 환풍기 트랩 탈거 세척 및 타일 줄눈 물때 스케일링',
         '방충망, 창틀 4면 틈새 먼지, 유리창 얼룩 클리닝 (외창 제외)',
         '천장 조명 커버 탈거 먼지 제거 및 스위치, 콘센트 미세 세척',
@@ -181,9 +185,9 @@ export const siteConfig = {
       id: 'commercial-cleaning',
       category: 'commercial',
       eyebrow: 'COMMERCIAL CLEANING',
-      badge: '비즈니스 전문 마스터',
+      badge: '사업장 청소',
       title: '사업장 클리닝 (Commercial Cleaning)',
-      description: '기업의 브랜드 가치와 임직원의 생산성을 극대화하는 프리미엄 오피스 & 상업 시설 전문 클리닝',
+      description: '사무실·상가·매장을 업무 시간을 피해 정기적으로 관리합니다.',
       highlights: ['사무실 정기 청소 & 주 1~5회 케어', '상가·카페 준공 및 오픈 전 대청소', '바닥 박리 및 고광택 왁스 코팅', '유리창·외벽·시스템 에어컨 세척'],
       features: [
         '업무에 지장 없는 심야/새벽/주말 맞춤 스케줄링 진행',
@@ -199,11 +203,217 @@ export const siteConfig = {
   },
 
   // -----------------------------------------------------------------------
+  // 5-1. 🏷️ 상품 카드 (가격·시간·인원은 임시 예시 — 실제 기준으로 바꿔 주세요)
+  // 카드를 누르면 /services/주소 상세 페이지로 갑니다.
+  // -----------------------------------------------------------------------
+  products: {
+    title1: '공간에 맞는',
+    title2: '청소 상품을 고르세요',
+    description: '평수와 공간 상태에 따라 최종 견적이 정해집니다. 아래 가격은 기준 금액이에요.',
+    durationLabel: '소요 시간',
+    crewLabel: '투입 인원',
+    includesLabel: '포함',
+    excludesLabel: '불포함',
+    more: '자세히 보기',
+    otherTitle: '찾는 청소가 없나요?',
+    otherDescription: '공간과 상태를 알려 주시면 맞춤 견적을 드려요.',
+    otherCta: '맞춤 견적 문의',
+    detailCta: '이 상품으로 견적 받기',
+    detailRecommendLabel: '이런 분께 맞아요',
+    detailOtherLabel: '다른 청소 상품',
+    detailAreasLabel: '서비스 지역',
+    items: [
+      {
+        id: 'move-in',
+        slug: 'move-in',
+        name: '입주청소',
+        summary: '새 집에 들어가기 전, 공사 먼지와 도배풀까지 닦아 냅니다.',
+        image: 'https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=1200&q=80',
+        price: '25만 원~',
+        priceBasis: '20평 기준',
+        duration: '5~7시간',
+        crew: '3~4명',
+        includes: ['서랍·수납장 안쪽', '창틀 레일·방충망', '주방 후드 필터', '욕실 배수구·환풍기', '조명 커버'],
+        excludes: ['외부 유리창', '붙박이 가전 내부 분해', '스티커·시트지 제거'],
+        detail:
+          '신축·리모델링 집은 눈에 안 보이는 시멘트 가루와 톱밥이 서랍 안, 창틀 레일, 조명 커버 안에 남아 있습니다. 입주청소는 수납장 서랍을 빼고, 후드 필터와 배수구 트랩을 분리해 닦은 뒤 바닥을 습식으로 마무리합니다. 작업이 끝나면 팀장과 함께 체크리스트를 보며 검수합니다.',
+        recommendFor: ['신축 아파트·오피스텔에 입주하시는 분', '인테리어 공사 뒤 들어가시는 분', '아이나 반려동물과 함께 사시는 분'],
+      },
+      {
+        id: 'move-out',
+        slug: 'move-out',
+        name: '이사청소',
+        summary: '살던 흔적과 묵은 때를 지우고, 다음 사람을 위한 집으로 만듭니다.',
+        image: 'https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=1200&q=80',
+        price: '23만 원~',
+        priceBasis: '20평 기준',
+        duration: '5~6시간',
+        crew: '3명',
+        includes: ['주방 기름때', '욕실 물때·곰팡이', '창틀·베란다', '붙박이장 안쪽', '현관·신발장'],
+        excludes: ['짐이 남아 있는 공간', '외부 유리창', '벽지 얼룩 제거'],
+        detail:
+          '짐을 뺀 빈집 상태에서 진행합니다. 오래 쓴 주방의 기름때, 욕실 줄눈 물때, 베란다 결로 곰팡이처럼 생활하며 쌓인 오염을 중심으로 닦습니다. 이사 나가는 집, 들어가는 집 모두 가능합니다.',
+        recommendFor: ['살던 집을 비우고 나가시는 분', '구축 아파트로 이사 들어가시는 분', '전월세 계약 만료 전 원상복구가 필요한 분'],
+      },
+      {
+        id: 'living',
+        slug: 'living',
+        name: '거주청소',
+        summary: '살면서 손이 안 닿던 곳을 한 번에 정리하는 대청소입니다.',
+        image: 'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1200&q=80',
+        price: '20만 원~',
+        priceBasis: '20평 기준',
+        duration: '4~6시간',
+        crew: '2~3명',
+        includes: ['주방·욕실 집중 청소', '창틀·방충망', '바닥 습식 청소', '문틀·걸레받이'],
+        excludes: ['옷장·서랍 안 짐 정리', '가구 이동', '외부 유리창'],
+        detail:
+          '짐이 있는 상태에서 진행하는 대청소입니다. 가구와 물건은 그대로 두고 주방·욕실·창틀처럼 오염이 쌓이기 쉬운 곳을 중심으로 닦습니다. 원하시는 구역만 골라서 맡기실 수도 있습니다.',
+        recommendFor: ['명절·손님맞이 전 대청소가 필요한 분', '맞벌이로 청소할 시간이 부족한 분', '계절이 바뀔 때 집을 정리하고 싶은 분'],
+      },
+      {
+        id: 'office',
+        slug: 'office',
+        name: '사무실 정기청소',
+        summary: '업무 시간을 피해 주 1~5회, 정해진 체크리스트대로 관리합니다.',
+        image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1200&q=80',
+        price: '월 30만 원~',
+        priceBasis: '30평 · 주 1회 기준',
+        duration: '회당 2~3시간',
+        crew: '1~2명',
+        includes: ['책상 주변·회의실', '탕비실·화장실', '바닥 청소', '쓰레기 분리배출', '월별 작업 보고서'],
+        excludes: ['개인 서랍 내부', '전산 장비 내부', '외벽 유리'],
+        detail:
+          '출근 전 새벽이나 퇴근 뒤 저녁, 주말 중 편한 시간에 진행합니다. 매번 같은 체크리스트로 작업하고, 한 달에 한 번 작업 보고서를 드립니다. 세금계산서 발행이 가능합니다.',
+        recommendFor: ['직원 10~50명 규모 사무실', '청소 직원을 따로 두기 어려운 회사', '정해진 품질로 꾸준히 관리받고 싶은 곳'],
+      },
+      {
+        id: 'store',
+        slug: 'store',
+        name: '상가·매장 청소',
+        summary: '카페·식당·매장의 오픈 전 청소와 정기 관리를 합니다.',
+        image: 'https://images.unsplash.com/photo-1527515637462-cff94eecc1ac?auto=format&fit=crop&w=1200&q=80',
+        price: '35만 원~',
+        priceBasis: '20평 기준',
+        duration: '4~6시간',
+        crew: '2~4명',
+        includes: ['주방 기름때', '홀 바닥', '유리 출입문·쇼윈도', '화장실', '간판 아래 출입구'],
+        excludes: ['주방 설비 분해 수리', '덕트 내부', '고소 작업이 필요한 외벽'],
+        detail:
+          '영업에 지장이 없도록 마감 뒤나 휴무일에 진행합니다. 오픈 전 준공 청소, 계절별 대청소, 정기 관리 중 필요한 방식으로 맞춰 드립니다.',
+        recommendFor: ['새로 매장을 여는 사장님', '주방 기름때가 쌓인 식당', '손님 눈에 띄는 유리와 바닥을 관리하고 싶은 매장'],
+      },
+      {
+        id: 'building',
+        slug: 'building',
+        name: '건물 계단·공용부',
+        summary: '빌라·상가 건물의 계단, 복도, 엘리베이터를 정기적으로 관리합니다.',
+        image: 'https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=1200&q=80',
+        price: '월 12만 원~',
+        priceBasis: '5층 · 주 1회 기준',
+        duration: '회당 1~2시간',
+        crew: '1~2명',
+        includes: ['계단·복도 바닥', '난간·손잡이', '엘리베이터 내부', '현관 출입문', '분리수거장 주변'],
+        excludes: ['세대 내부', '정화조', '옥상 방수층'],
+        detail:
+          '정해진 요일에 방문해 계단과 복도, 엘리베이터, 현관을 청소합니다. 작업 후 사진으로 결과를 남겨 건물주나 관리인께 보내 드립니다.',
+        recommendFor: ['빌라·다가구 건물주', '상가 건물 관리인', '오피스텔 관리단'],
+      },
+      {
+        id: 'post-construction',
+        slug: 'post-construction',
+        name: '준공·인테리어 후',
+        summary: '공사가 끝난 공간의 분진과 자재 잔여물을 걷어 냅니다.',
+        image: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80',
+        price: '30만 원~',
+        priceBasis: '20평 기준',
+        duration: '6~8시간',
+        crew: '3~5명',
+        includes: ['공사 분진 집진', '바닥 페인트·실리콘 자국', '창호 보호필름 제거', '수납장 안쪽', '조명·스위치'],
+        excludes: ['폐자재 반출', '하자 보수', '외부 유리창'],
+        detail:
+          '인테리어나 신축 공사가 끝난 직후, 바닥과 벽, 수납장 안에 남은 미세 분진과 페인트·실리콘 자국을 제거합니다. 집진기로 먼지를 먼저 걷어 낸 뒤 습식으로 마무리합니다.',
+        recommendFor: ['인테리어 공사를 마친 집·사무실', '준공 검사를 앞둔 신축 건물', '오픈 전 매장'],
+      },
+    ] as ProductItem[],
+  },
+
+  // -----------------------------------------------------------------------
+  // 5-2. 📍 서비스 지역 (이 목록이 검색엔진·AI에 알려 주는 서비스 지역이기도 합니다)
+  // -----------------------------------------------------------------------
+  areas: {
+    title1: '이 지역에',
+    title2: '직접 찾아갑니다',
+    description: '서울과 경기 주요 지역은 직영 팀이 바로 갑니다.',
+    note: '목록에 없는 지역도 상담해 드려요. 거리와 일정에 따라 가능 여부를 안내합니다.',
+    cta: '우리 지역 문의하기',
+    groups: [
+      {
+        id: 'seoul',
+        name: '서울',
+        districts: ['강남구', '서초구', '송파구', '강동구', '마포구', '용산구', '성동구', '광진구', '영등포구', '양천구', '강서구', '노원구'],
+      },
+      {
+        id: 'gyeonggi',
+        name: '경기',
+        districts: ['성남시', '용인시', '하남시', '수원시', '고양시', '남양주시', '화성시', '안양시', '부천시', '광명시', '과천시', '구리시'],
+      },
+    ] as AreaGroup[],
+  },
+
+  // -----------------------------------------------------------------------
+  // 5-3. 📄 증명 자료 (직접 확인할 수 있는 서류·링크)
+  // -----------------------------------------------------------------------
+  proof: {
+    title1: '말보다',
+    title2: '직접 확인하세요',
+    description: '사업자 정보, 보험 가입, 실제 고객 후기를 누구나 확인할 수 있게 열어 둡니다.',
+    items: [
+      {
+        id: 'business',
+        label: '사업자 정보',
+        title: '정식 등록된 사업자입니다',
+        description: '공정거래위원회 사이트에서 상호, 대표자, 통신판매업 신고 내역을 바로 조회할 수 있어요.',
+        image: '',
+        linkLabel: '사업자 정보 조회',
+        href: 'https://www.ftc.go.kr/bizCommPop.do?wrkr_no={사업자번호}',
+      },
+      {
+        id: 'insurance',
+        label: '보험 가입',
+        title: '영업배상책임보험 가입',
+        description: '작업 중 파손이 생기면 보험으로 보상합니다. 가입증명서 사진을 그대로 올려 둡니다.',
+        image: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=1000&q=80',
+        linkLabel: '',
+        href: '',
+      },
+      {
+        id: 'naver',
+        label: '네이버 후기',
+        title: '네이버 플레이스 후기',
+        description: '홈페이지 밖에서 남긴 실제 고객 후기를 네이버 플레이스에서 확인하세요.',
+        image: '',
+        linkLabel: '네이버 후기 보기',
+        href: 'https://map.naver.com',
+      },
+      {
+        id: 'estimate',
+        label: '견적서',
+        title: '견적서 금액 그대로',
+        description: '견적서에 적은 금액 외에 현장에서 추가금을 받지 않습니다. 실제 견적서 양식을 보여 드려요.',
+        image: '',
+        linkLabel: '견적 받아 보기',
+        href: '#contact',
+      },
+    ] as ProofItem[],
+  },
+
+  // -----------------------------------------------------------------------
   // 6. 🛡️ 4대 안심 보증
   // -----------------------------------------------------------------------
   trust: {
     title: '프리미어 클린 4대 고객 안심 보증 서약제',
-    subtitle: '파손·선금·A/S·추가금 우려를 법적·금전적으로 100% 사전 차단합니다',
+    subtitle: '파손·선금·A/S·추가금 걱정을 미리 막습니다',
     seal: '본사 직영 공식 보증',
   },
   trustBadges: [
@@ -248,7 +458,7 @@ export const siteConfig = {
     eyebrow: 'CRAFTSMANSHIP & CORE STANDARDS',
     title1: '프리미어 클린이 타협하지 않는',
     title2: '4가지 시공 원칙',
-    description: '보이는 곳만 닦아서는 프리미어가 아닙니다. 기술과 원칙이 만드는 차이를 경험해 보세요.',
+    description: '보이는 곳만 닦지 않습니다. 매 현장에서 지키는 네 가지 기준입니다.',
   },
   coreValues: [
     {
@@ -265,7 +475,7 @@ export const siteConfig = {
     {
       id: 'eco-equipment',
       badge: '친환경 케어',
-      title: '독일 명품 장비 & 친환경 세제',
+      title: '전문 장비와 친환경 세제',
       subtitle: '영유아·반려동물 안심 케어 (락스 독성 0%)',
       description: '저가 독성 락스나 유독성화학약품을 일체 배제합니다. 독일 키엘(Kiehl) 친환경 생분해 세제와 카처 150℃ 고온 스팀으로 유해 세균을 멸균합니다.',
       highlight: '친환경 인증 세제 & 150℃ 고온 스팀',
@@ -277,8 +487,8 @@ export const siteConfig = {
       id: 'full-disassembly',
       badge: '완전 탈거',
       title: '전 구역 100% 완전 분리 탈거',
-      subtitle: '보이지 않는 숨은 공사 분진 완전 박멸',
-      description: '눈에 보이는 곳만 닦는 수박 겉핥기 청소는 거부합니다. 싱크대 걸레받이, 전등갓, 수납장 서랍, 배수구, 환풍기까지 100% 탈거하여 미세 분진을 흡입합니다.',
+      subtitle: '안 보이는 곳의 공사 분진까지 제거',
+      description: '눈에 보이는 곳만 닦지 않습니다. 싱크대 걸레받이, 전등갓, 수납장 서랍, 배수구, 환풍기를 분리해 안쪽 분진까지 빨아들입니다.',
       highlight: '서랍·전등·배수구·환풍기 100% 탈거 세척',
       gradient: 'from-indigo-600 to-sky-600',
       border: 'border-indigo-100 hover:border-indigo-300',
@@ -359,7 +569,7 @@ export const siteConfig = {
     afterButton: '시공 후 (AFTER)',
     splitButton: '반반 비교',
     beforeLabel: 'BEFORE (시공 전 오염 상태)',
-    afterLabel: 'AFTER (정밀 멸균 시공 완료)',
+    afterLabel: 'AFTER (시공 완료)',
     hint: '상단 버튼을 눌러 시공 전/후를 비교해 보세요',
     directNote: '100% 직영팀 직접 시공',
     cta: '이 구역 맞춤 견적 문의',
@@ -374,7 +584,7 @@ export const siteConfig = {
       afterImage: 'https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=1200&q=80',
       disassemblyTargets: ['렌지후드 금속 필터망', '가스레인지 화구 및 삼발이', '싱크대 하부 걸레받이(가림판)', '칼꽂이 및 배수구 트랩'],
       specialMethods: ['150℃ 산업용 고온 스팀 분사 멸균', '친환경 생분해 오븐/기름때 연마제', '싱크볼 물때 스케일링 및 수전 살균'],
-      tag: '기름때·탄자국 박멸',
+      tag: '기름때·탄 자국 제거',
     },
     {
       id: 'bathroom',
@@ -396,7 +606,7 @@ export const siteConfig = {
       afterImage: 'https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&w=1200&q=80',
       disassemblyTargets: ['창틀 레일 4면 틈새 완전 세척', '방충망 표면 고압 분진 제거', '실리콘 곰팡이 및 결로 자국'],
       specialMethods: ['샤시 레일 전용 틈새 고압 스팀 브러시', '친환경 유리 세정 유막 제거제', '풍지판 및 방충망 먼지 집진'],
-      tag: '창틀 흙먼지 완벽 제거',
+      tag: '창틀 흙먼지 제거',
     },
     {
       id: 'storage',
@@ -492,7 +702,7 @@ export const siteConfig = {
     description: '100% 한국인 직영 마스터팀이 현장에서 직접 시공하고 고객님과 동행 검수를 마친 실제 후기입니다.',
     ratingText: '고객 평점 4.98 / 5.0 만점 기준',
     carouselBadge: '실시간 고객 검증 평가',
-    carouselTitle: '고객님들이 직접 증명하는 프리미어 클린의 품격',
+    carouselTitle: '고객님이 직접 남긴 후기',
     photoBadge: '시공 후 현장 실사',
     beforeTag: '청소 전', // 전·후 사진이 둘 다 있을 때, 처음 보이는 사진 위 표시
     afterTag: '청소 후', // 잠시 뒤 바뀌는 사진 위 표시
@@ -669,7 +879,7 @@ export const siteConfig = {
   // 14. 맨 아래 회사 정보
   // -----------------------------------------------------------------------
   footer: {
-    description: '프리미어 클린은 100% 한국인 직영 마스터팀으로 운영되는 프리미엄 청소 전문 기업입니다. 타협 없는 시공과 공인된 친환경 기술로 새로운 주거·업무 환경의 기준을 만듭니다.',
+    description: '프리미어 클린은 본사 직영 팀이 직접 작업하는 청소 전문 업체입니다. 집과 사무실, 상가를 같은 체크리스트로 청소합니다.',
     quickTitle: '바로가기',
     quickLinks: [
       { name: '회사소개 및 핵심가치', href: '#about' },

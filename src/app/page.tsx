@@ -6,6 +6,9 @@ import About from '@/components/About';
 import Team from '@/components/Team';
 import CleaningProcess from '@/components/CleaningProcess';
 import Services from '@/components/Services';
+import Products from '@/components/Products';
+import Areas from '@/components/Areas';
+import Proof from '@/components/Proof';
 import ReviewsSection from '@/components/Reviews/ReviewsSection';
 import InstagramSection from '@/components/Reviews/InstagramSection';
 import FaqSection from '@/components/FaqSection';
@@ -27,6 +30,9 @@ const SECTION_COMPONENTS: Record<SectionId, React.ComponentType> = {
   team: Team,
   process: CleaningProcess,
   services: Services,
+  products: Products,
+  areas: Areas,
+  proof: Proof,
   reviews: ReviewsSection,
   instagram: InstagramSection,
   faq: FaqSection,

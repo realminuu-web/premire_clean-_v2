@@ -146,7 +146,7 @@ export default function Services() {
               >
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 to-transparent" />
                 <div className="absolute bottom-4 left-4 text-white">
-                  <span className="text-[10px] font-semibold text-sky-300 uppercase tracking-wider">{active.eyebrow}</span>
+                  <span className="text-xs font-semibold text-sky-300 uppercase tracking-wider">{active.eyebrow}</span>
                   <h3 className="text-lg font-bold">{active.title}</h3>
                 </div>
               </div>

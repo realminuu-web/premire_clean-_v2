@@ -5,13 +5,14 @@ import { Phone, Menu, X, ArrowRight, ShieldCheck } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { scrollToId, useContent } from '@/components/ContentProvider';
 
-export default function Header() {
+/** solid: 첫 화면 사진이 없는 서브 페이지(상세 페이지 등)는 처음부터 흰 배경 메뉴 줄 */
+export default function Header({ solid = false }: { solid?: boolean }) {
   const { header, contact, sectionOrder, visibility } = useContent();
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   // 첫 화면 사진이 맨 위에 있을 때만, 사진 위에 투명하게 겹칩니다.
-  const overHero = sectionOrder.find((id) => visibility[id] !== false) === 'hero';
+  const overHero = !solid && sectionOrder.find((id) => visibility[id] !== false) === 'hero';
   const transparent = overHero && !isScrolled && !mobileMenuOpen;
 
   useEffect(() => {
@@ -38,7 +39,7 @@ export default function Header() {
       <div className="max-w-7xl 2xl:max-w-[1680px] 3xl:max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8 2xl:px-12">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <a href="#" className="flex items-center gap-2.5 group transition-transform active:scale-95">
+          <a href={solid ? '/' : '#'} className="flex items-center gap-2.5 group transition-transform active:scale-95">
            <div className="flex flex-col">
               <span
                 className={`font-bold text-xl tracking-tight transition-colors ${
@@ -49,7 +50,7 @@ export default function Header() {
                 <span className={transparent ? 'text-sky-300' : 'text-blue-700'}>{header.logoAccent}</span>
               </span>
               <span
-                className={`hidden sm:block text-[10px] font-semibold tracking-wider -mt-0.5 ${
+                className={`hidden sm:block text-xs font-semibold tracking-wider -mt-0.5 ${
                   transparent ? 'text-white/75' : 'text-slate-500'
                 }`}
               >

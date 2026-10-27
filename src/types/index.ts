@@ -111,6 +111,41 @@ export interface InstagramPost {
   postUrl?: string;
 }
 
+/** 상품 카드 1장 (카드를 누르면 /services/[slug] 상세 페이지로 갑니다) */
+export interface ProductItem {
+  id: string;
+  slug: string; // 상세 페이지 주소 (영문 소문자와 - 만)
+  name: string;
+  summary: string;
+  image: string;
+  price: string; // 예: 25만 원~
+  priceBasis: string; // 예: 20평 기준
+  duration: string;
+  crew: string;
+  includes: string[];
+  excludes: string[];
+  detail: string; // 상세 페이지 본문
+  recommendFor: string[]; // 상세 페이지 "이런 분께 맞아요"
+}
+
+/** 서비스 지역 묶음 (예: 서울 + 구 목록) */
+export interface AreaGroup {
+  id: string;
+  name: string;
+  districts: string[];
+}
+
+/** 증명 자료 카드 1장 */
+export interface ProofItem {
+  id: string;
+  label: string;
+  title: string;
+  description: string;
+  image: string; // 비워 두면 사진 칸 없음
+  linkLabel: string;
+  href: string; // {사업자번호} 를 넣으면 회사 사업자번호 숫자로 바뀝니다
+}
+
 export type SectionId =
   | 'hero'
   | 'trustBadges'
@@ -118,6 +153,9 @@ export type SectionId =
   | 'team'
   | 'process'
   | 'services'
+  | 'products'
+  | 'areas'
+  | 'proof'
   | 'reviews'
   | 'instagram'
   | 'faq'
