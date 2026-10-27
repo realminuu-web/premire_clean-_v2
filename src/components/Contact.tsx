@@ -107,7 +107,7 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="py-20 sm:py-24 lg:py-32 bg-blue-50 text-slate-900 relative overflow-hidden">
+    <section id="contact" className="py-16 sm:py-20 lg:py-24 bg-blue-50 text-slate-900 relative overflow-hidden">
       <div className="max-w-7xl 2xl:max-w-[1680px] 3xl:max-w-[1920px] mx-auto px-5 sm:px-6 lg:px-8 2xl:px-12 relative z-10">
         <SectionHeading title1={t.title1} title2={t.title2} description={contact.formSubtitle} />
 

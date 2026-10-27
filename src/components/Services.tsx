@@ -96,7 +96,7 @@ export default function Services() {
   const active = activeTab === 'home' ? services.home : services.commercial;
 
   return (
-    <section id="services" className="py-20 sm:py-24 lg:py-32 bg-white relative">
+    <section id="services" className="py-16 sm:py-20 lg:py-24 bg-white relative">
       <div className="max-w-7xl 2xl:max-w-[1680px] 3xl:max-w-[1920px] mx-auto px-5 sm:px-6 lg:px-8 2xl:px-12">
         <SectionHeading title1={services.title1} title2={services.title2} description={services.description} />
 

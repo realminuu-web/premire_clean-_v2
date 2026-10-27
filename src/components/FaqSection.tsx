@@ -15,8 +15,8 @@ export default function FaqSection() {
   };
 
   return (
-    <section id="faq" className="py-20 sm:py-24 lg:py-32 bg-white relative">
-      <div className="max-w-4xl 2xl:max-w-5xl 3xl:max-w-6xl mx-auto px-5 sm:px-6 lg:px-8 space-y-12 lg:space-y-16">
+    <section id="faq" className="py-16 sm:py-20 lg:py-24 bg-white relative">
+      <div className="max-w-4xl 2xl:max-w-5xl 3xl:max-w-6xl mx-auto px-5 sm:px-6 lg:px-8 space-y-10 lg:space-y-12">
         <SectionHeading flush title1={faqSection.title1} title2={faqSection.title2} description={faqSection.description} />
 
         {/* Accordion List */}

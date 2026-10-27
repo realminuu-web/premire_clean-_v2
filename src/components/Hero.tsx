@@ -1,7 +1,8 @@
 'use client';
 
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useEffect, useRef, useState } from 'react';
+import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion';
+import CountUp from '@/components/CountUp';
 import { ArrowRight } from 'lucide-react';
 import { scrollToId, useContent } from '@/components/ContentProvider';
 
@@ -37,24 +38,45 @@ const rise = (delay: number) => ({
   transition: { duration: 0.6, delay, ease: [0.22, 1, 0.36, 1] as const },
 });
 
+/** 컴퓨터·태블릿 화면인지 (휴대폰은 패럴랙스가 끊겨 보여서 끕니다) */
+function useWideScreen() {
+  const [wide, setWide] = useState(false);
+  useEffect(() => {
+    const mq = window.matchMedia('(min-width: 768px)');
+    const update = () => setWide(mq.matches);
+    update();
+    mq.addEventListener('change', update);
+    return () => mq.removeEventListener('change', update);
+  }, []);
+  return wide;
+}
+
 export default function Hero() {
   const { hero } = useContent();
+  const ref = useRef<HTMLElement>(null);
+  const wide = useWideScreen();
+  const reduce = useReducedMotion();
+  // 약한 패럴랙스: 스크롤하면 사진이 글자보다 천천히(약 15%) 내려갑니다
+  const { scrollYProgress } = useScroll({ target: ref, offset: ['start start', 'end start'] });
+  const photoY = useTransform(scrollYProgress, [0, 1], ['0%', '15%']);
+  const parallax = wide && !reduce;
 
   return (
     <section
+      ref={ref}
       id="hero"
       aria-label="첫 화면"
       className="relative h-svh min-h-[600px] w-full overflow-hidden bg-slate-900 text-white"
     >
-      {/* 화면 가득한 선명한 사진 */}
-      {/* eslint-disable-next-line @next/next/no-img-element -- 관리자가 올린 사진 주소를 그대로 씁니다 */}
-      <img
-        src={hero.backgroundImage}
-        alt=""
+      {/* 화면 가득한 선명한 사진 (패럴랙스로 움직여도 빈틈이 안 보이게 위아래로 조금 크게) */}
+      <motion.div
         aria-hidden="true"
-        fetchPriority="high"
-        className="absolute inset-0 h-full w-full object-cover"
-      />
+        className={`absolute inset-x-0 ${parallax ? '-top-[8%] h-[116%]' : 'inset-y-0'}`}
+        style={parallax ? { y: photoY } : undefined}
+      >
+        {/* eslint-disable-next-line @next/next/no-img-element -- 관리자가 올린 사진 주소를 그대로 씁니다 */}
+        <img src={hero.backgroundImage} alt="" fetchPriority="high" className="h-full w-full object-cover" />
+      </motion.div>
       {/* 글자가 잘 읽히도록 왼쪽·아래만 살짝 어둡게 */}
       <div
         aria-hidden="true"
@@ -81,7 +103,7 @@ export default function Hero() {
               className="mt-6 flex items-baseline gap-2 border-t border-white/25 pt-5 md:hidden"
             >
               <span className="text-sm font-medium text-white/85">{hero.countLabel}</span>
-              <span className="text-[28px] font-extrabold tracking-[-0.03em]">{hero.completedCleanCount}</span>
+              <span className="text-[28px] font-extrabold tracking-[-0.03em]"><CountUp value={hero.completedCleanCount} /></span>
               <span className="text-sm text-white/85">{hero.countUnit}</span>
             </motion.div>
 
@@ -109,7 +131,7 @@ export default function Hero() {
           <motion.div {...rise(0.3)} className="hidden text-right md:block">
             <p className="text-sm font-semibold text-white/85 lg:text-base">{hero.countLabel}</p>
             <p className="mt-2 text-6xl font-extrabold tracking-[-0.04em] lg:text-7xl">
-              {hero.completedCleanCount}
+              <CountUp value={hero.completedCleanCount} />
               <span className="ml-1.5 text-xl font-semibold text-white/85 lg:text-2xl">{hero.countUnit}</span>
             </p>
           </motion.div>

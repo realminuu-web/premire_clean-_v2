@@ -10,7 +10,7 @@ export default function Team() {
   const { team } = useContent();
 
   return (
-    <section id="team" className="py-20 sm:py-24 lg:py-32 bg-white relative">
+    <section id="team" className="py-16 sm:py-20 lg:py-24 bg-white relative">
       <div className="max-w-7xl 2xl:max-w-[1680px] 3xl:max-w-[1920px] mx-auto px-5 sm:px-6 lg:px-8 2xl:px-12">
         <SectionHeading title1={team.title1} title2={team.title2} description={team.description} />
 
@@ -43,7 +43,7 @@ export default function Team() {
         </div>
 
         {(team.photo || team.promises.length > 0) && (
-          <div className="mt-10 grid gap-4 sm:gap-6 lg:mt-12 lg:grid-cols-[1.3fr_1fr]">
+          <div className="mt-8 grid gap-4 sm:gap-6 lg:mt-10 lg:grid-cols-[1.3fr_1fr]">
             {team.photo && (
               <div
                 className="min-h-56 rounded-3xl bg-slate-200 bg-cover bg-center sm:min-h-72"

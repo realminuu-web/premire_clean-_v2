@@ -45,8 +45,8 @@ export default function About() {
   };
 
   return (
-    <section id="about" className="py-20 sm:py-24 lg:py-32 bg-white relative overflow-hidden">
-      <div className="max-w-7xl 2xl:max-w-[1680px] 3xl:max-w-[1920px] mx-auto px-5 sm:px-6 lg:px-8 2xl:px-12 relative z-10 space-y-12 lg:space-y-16">
+    <section id="about" className="py-16 sm:py-20 lg:py-24 bg-white relative overflow-hidden">
+      <div className="max-w-7xl 2xl:max-w-[1680px] 3xl:max-w-[1920px] mx-auto px-5 sm:px-6 lg:px-8 2xl:px-12 relative z-10 space-y-10 lg:space-y-12">
         <SectionHeading flush title1={about.title1} title2={about.title2} description={about.description} />
 
         {/* 📱 Mobile View: Button-Tab Switcher (스크롤 단축 & 원터치 전환) */}

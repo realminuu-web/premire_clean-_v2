@@ -47,7 +47,7 @@ export default function CleaningProcess() {
   const scrollToContact = () => scrollToId('#contact');
 
   return (
-    <section id="process" className="py-20 sm:py-24 lg:py-32 bg-slate-50 relative overflow-hidden">
+    <section id="process" className="py-16 sm:py-20 lg:py-24 bg-slate-50 relative overflow-hidden">
       <div className="max-w-6xl 2xl:max-w-7xl mx-auto px-5 sm:px-6 lg:px-8 space-y-10 lg:space-y-12 relative z-10">
         <SectionHeading flush title1={process.title1} title2={process.title2} description={process.description} />
 

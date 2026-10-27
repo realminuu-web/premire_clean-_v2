@@ -12,12 +12,12 @@ export default function ReviewsSection() {
   const reviews = useReviews();
 
   return (
-    <section id="reviews" className="py-20 sm:py-24 lg:py-32 bg-slate-50 relative">
+    <section id="reviews" className="py-16 sm:py-20 lg:py-24 bg-slate-50 relative">
       <div className="max-w-7xl 2xl:max-w-[1680px] 3xl:max-w-[1920px] mx-auto px-5 sm:px-6 lg:px-8 2xl:px-12">
         <SectionHeading title1={reviewsSection.title1} title2={reviewsSection.title2} description={reviewsSection.description} />
 
         {reviewsSection.ratingText && (
-          <div className="-mt-6 mb-12 flex justify-center lg:-mt-8 lg:mb-16">
+          <div className="-mt-4 mb-10 flex justify-center lg:-mt-6 lg:mb-12">
             <div className="inline-flex items-center gap-2 text-sm font-semibold text-amber-700 bg-amber-50 border border-amber-200/80 px-4 py-2 rounded-full">
               <div className="flex items-center gap-0.5">
                 {[...Array(5)].map((_, i) => (
