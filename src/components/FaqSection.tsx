@@ -80,11 +80,11 @@ export default function FaqSection() {
         </div>
 
         {/* Bottom Fast Help Box */}
-        <div className="p-6 sm:p-8 rounded-3xl bg-slate-900 text-white shadow-ambient-md flex flex-col sm:flex-row items-center justify-between gap-6 border border-slate-800">
+        <div className="p-6 sm:p-8 rounded-3xl bg-blue-700 text-white shadow-ambient-md flex flex-col sm:flex-row items-center justify-between gap-6">
           <div className="space-y-1 text-center sm:text-left">
-            <span className="block text-xs font-semibold text-sky-400">{faqSection.helpEyebrow}</span>
+            <span className="block text-xs font-semibold text-blue-100">{faqSection.helpEyebrow}</span>
             <h4 className="text-lg sm:text-xl font-bold tracking-tight">{faqSection.helpTitle}</h4>
-            <p className="text-xs text-slate-300 break-keep font-normal">
+            <p className="text-xs text-blue-50 break-keep font-normal">
               {faqSection.helpDescription}
             </p>
           </div>
@@ -93,7 +93,7 @@ export default function FaqSection() {
             <a
               href={contact.phoneTel}
               data-track="click_phone"
-              className="inline-flex items-center gap-2 bg-blue-700 hover:bg-blue-600 text-white text-xs font-semibold px-4 py-3 rounded-xl transition-all shadow-ambient-sm active:scale-95"
+              className="inline-flex items-center gap-2 bg-white hover:bg-blue-50 text-blue-700 text-xs font-bold px-4 py-3 rounded-xl transition-all shadow-ambient-sm active:scale-95"
             >
               <Phone className="w-3.5 h-3.5" strokeWidth={1.75} />
               <span>{contact.phone}</span>
