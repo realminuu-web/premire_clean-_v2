@@ -47,18 +47,28 @@ function ReviewForm({ initial, onCancel, onSaved }: { initial: Form & { id?: str
     <Card className="mb-5">
       <form onSubmit={submit} className="space-y-5">
         <h2 className="text-lg font-bold">{initial.id ? '후기 고치기' : '새 후기 올리기'}</h2>
+        {/* 왼쪽 = 청소 전, 오른쪽 = 청소 후 (홈페이지에서도 전 → 후 순서로 바뀌어 보입니다) */}
         <div className="grid gap-5 sm:grid-cols-2">
           <div>
-            <p className="mb-1.5 text-sm font-bold">청소 후 사진</p>
-            <p className="mb-2 text-[13px] text-slate-500">📍 홈페이지 후기 칸에 크게 보이는 사진</p>
-            <ImageInput value={form.afterImage} onChange={(v) => set('afterImage', v)} label="청소 후 사진" />
-          </div>
-          <div>
-            <p className="mb-1.5 text-sm font-bold">청소 전 사진 (선택)</p>
-            <p className="mb-2 text-[13px] text-slate-500">📍 청소 후 사진이 없을 때 대신 보여요</p>
+            <p className="mb-1.5 text-sm font-bold">① 청소 전 사진</p>
+            <p className="mb-2 text-[13px] text-slate-500">📍 홈페이지에서 먼저 보이는 사진 (검은 &ldquo;청소 전&rdquo; 표시)</p>
             <ImageInput value={form.beforeImage} onChange={(v) => set('beforeImage', v)} label="청소 전 사진" />
           </div>
+          <div>
+            <p className="mb-1.5 text-sm font-bold">② 청소 후 사진</p>
+            <p className="mb-2 text-[13px] text-slate-500">📍 2.5초 뒤 바뀌어 보이는 사진 (파란 &ldquo;청소 후&rdquo; 표시)</p>
+            <ImageInput value={form.afterImage} onChange={(v) => set('afterImage', v)} label="청소 후 사진" />
+          </div>
         </div>
+        {form.beforeImage && form.afterImage && (
+          <button
+            type="button"
+            onClick={() => setForm((f) => ({ ...f, beforeImage: f.afterImage, afterImage: f.beforeImage }))}
+            className="-mt-2 cursor-pointer text-sm font-semibold text-blue-700 underline"
+          >
+            ⇄ 전·후 사진 서로 바꾸기
+          </button>
+        )}
         <label className="block">
           <span className="text-sm font-bold">후기 내용</span>
           <span className="block text-[13px] text-slate-500">📍 후기 칸 가운데 큰 따옴표 글. 손님이 한 말 그대로 적어 주세요</span>
