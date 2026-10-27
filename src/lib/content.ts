@@ -44,6 +44,21 @@ export function buildContent(override: unknown): SiteContent {
       content = setAt(content, path, structuredClone(getAt(defaults, path)));
     }
   }
+  // 상세 페이지 주소: 영문 소문자·숫자·- 만 남기고, 겹치면 뒤에 -2, -3 을 붙입니다
+  const used = new Set<string>();
+  content.products.items = content.products.items.map((p, i) => {
+    const base =
+      String(p.slug ?? '')
+        .toLowerCase()
+        .replace(/[^a-z0-9-]+/g, '-')
+        .replace(/-+/g, '-')
+        .replace(/^-|-$/g, '') || `service-${i + 1}`;
+    let slug = base;
+    for (let n = 2; used.has(slug); n++) slug = `${base}-${n}`;
+    used.add(slug);
+    return slug === p.slug ? p : { ...p, slug };
+  });
+
   const order = content.sectionOrder.filter((id) => defaults.sectionOrder.includes(id));
   defaults.sectionOrder.forEach((id, i) => {
     if (order.includes(id)) return;

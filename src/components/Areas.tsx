@@ -33,7 +33,7 @@ export default function Areas() {
               {/* 칸 너비를 똑같이 맞춰 줄마다 버블이 반듯하게 정렬되게 합니다 */}
               <ul className="mt-5 grid grid-cols-3 gap-2 sm:grid-cols-4 md:grid-cols-3 lg:grid-cols-4">
                 {g.districts.map((d) => (
-                  <li key={d} className="truncate rounded-full border border-slate-200 bg-white px-2 py-2 text-center text-sm font-medium text-slate-700">
+                  <li key={d} className="flex items-center justify-center rounded-full border border-slate-200 bg-white px-2 py-2 text-center text-sm leading-tight font-medium text-slate-700 break-keep">
                     {d}
                   </li>
                 ))}

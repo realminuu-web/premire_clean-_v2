@@ -15,6 +15,16 @@ export default function Header({ solid = false }: { solid?: boolean }) {
   const overHero = !solid && sectionOrder.find((id) => visibility[id] !== false) === 'hero';
   const transparent = overHero && !isScrolled && !mobileMenuOpen;
 
+  // 상세 페이지에서 "/#contact" 처럼 들어오면, 화면이 다 그려진 뒤 그 섹션으로 내려갑니다
+  useEffect(() => {
+    if (solid || !window.location.hash) return;
+    const hash = window.location.hash;
+    const timer = setTimeout(() => {
+      if (document.querySelector(hash)) scrollToId(hash);
+    }, 150);
+    return () => clearTimeout(timer);
+  }, [solid]);
+
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 20);
     handleScroll();
