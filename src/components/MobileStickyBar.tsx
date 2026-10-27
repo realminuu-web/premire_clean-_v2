@@ -2,9 +2,10 @@
 
 import React from 'react';
 import { Phone, MessageCircle, Send } from 'lucide-react';
-import { siteConfig } from '@/config/site';
+import { useContent } from '@/components/ContentProvider';
 
 export default function MobileStickyBar() {
+  const { contact, mobileBar } = useContent();
   const scrollToContact = (e: React.MouseEvent) => {
     e.preventDefault();
     const el = document.querySelector('#contact');
@@ -28,31 +29,34 @@ export default function MobileStickyBar() {
         
         {/* 1. Phone Consultation (min-h-[48px] thumb target) */}
         <a
-          href={siteConfig.contact.phoneTel}
+          href={contact.phoneTel}
+          data-track="click_phone"
           className="flex flex-col items-center justify-center min-h-[48px] py-1.5 px-1 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold text-[11px] transition-all active:scale-95 cursor-pointer border border-slate-200/80"
         >
           <Phone className="w-4 h-4 text-blue-700 mb-0.5" strokeWidth={1.75} />
-          <span>전화 상담</span>
+          <span>{mobileBar.phone}</span>
         </a>
 
         {/* 2. KakaoTalk 1:1 Chat (min-h-[48px] thumb target) */}
         <a
-          href={siteConfig.contact.kakaoChatUrl}
+          href={contact.kakaoChatUrl}
+          data-track="click_kakao"
           target="_blank"
           rel="noopener noreferrer"
           className="flex flex-col items-center justify-center min-h-[48px] py-1.5 px-1 rounded-xl bg-[#FEE500] hover:bg-yellow-400 text-[#3C1E1E] font-bold text-[11px] transition-all active:scale-95 cursor-pointer shadow-sm"
         >
           <MessageCircle className="w-4 h-4 fill-current mb-0.5" strokeWidth={1.75} />
-          <span>카톡 1:1</span>
+          <span>{mobileBar.kakao}</span>
         </a>
 
         {/* 3. Fast Quote Request (min-h-[48px] thumb target) */}
         <button
+          data-track="click_quote"
           onClick={scrollToContact}
           className="flex flex-col items-center justify-center min-h-[48px] py-1.5 px-1 rounded-xl bg-blue-700 hover:bg-blue-800 text-white font-bold text-[11px] transition-all active:scale-95 cursor-pointer shadow-ambient-sm"
         >
           <Send className="w-4 h-4 text-sky-200 mb-0.5" strokeWidth={1.75} />
-          <span>견적 신청</span>
+          <span>{mobileBar.quote}</span>
         </button>
 
       </div>

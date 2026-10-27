@@ -3,11 +3,11 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { HelpCircle, ChevronDown, Phone, MessageCircle, Sparkles } from 'lucide-react';
-import { siteConfig } from '@/config/site';
+import { useContent } from '@/components/ContentProvider';
 
 export default function FaqSection() {
-  const [openId, setOpenId] = useState<string | null>(siteConfig.faqList[0]?.id || null);
-  const faqs = siteConfig.faqList;
+  const { faqSection, faqList: faqs, contact } = useContent();
+  const [openId, setOpenId] = useState<string | null>(faqs[0]?.id || null);
 
   const toggleFaq = (id: string) => {
     setOpenId((prev) => (prev === id ? null : id));
@@ -21,17 +21,16 @@ export default function FaqSection() {
         <div className="text-center space-y-3">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-50 text-blue-700 text-xs font-semibold uppercase tracking-wider border border-blue-100">
             <HelpCircle className="w-3.5 h-3.5" strokeWidth={1.75} />
-            <span>FREQUENTLY ASKED QUESTIONS</span>
+            <span>{faqSection.eyebrow}</span>
           </div>
 
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 tracking-[-0.03em] break-keep">
-            자주 묻는 질문, <br className="hidden sm:inline" />
-            <span className="text-blue-700 inline-block">속 시원하게 답해 드립니다</span>
+            {faqSection.title1} <br className="hidden sm:inline" />
+            <span className="text-blue-700 inline-block">{faqSection.title2}</span>
           </h2>
 
           <p className="text-sm sm:text-base text-slate-600 max-w-xl mx-auto break-keep leading-relaxed font-normal">
-            청소 업체를 선택하실 때 가장 불안하고 궁금해하시는 질문들을 모았습니다.
-            투명하고 정직하게 안내해 드립니다.
+            {faqSection.description}
           </p>
         </div>
 
@@ -100,30 +99,32 @@ export default function FaqSection() {
           <div className="space-y-1 text-center sm:text-left">
             <span className="text-xs font-semibold text-sky-400 flex items-center justify-center sm:justify-start gap-1">
               <Sparkles className="w-3.5 h-3.5" strokeWidth={1.75} />
-              <span>실시간 1:1 상담 안내</span>
+              <span>{faqSection.helpEyebrow}</span>
             </span>
-            <h4 className="text-lg sm:text-xl font-bold tracking-tight">더 궁금한 점이 있으신가요?</h4>
+            <h4 className="text-lg sm:text-xl font-bold tracking-tight">{faqSection.helpTitle}</h4>
             <p className="text-xs text-slate-300 break-keep font-normal">
-              전문 상담 매니저가 공간 상황에 맞춰 친절하고 정직하게 1분 내로 답변드립니다.
+              {faqSection.helpDescription}
             </p>
           </div>
 
           <div className="flex items-center gap-3 flex-shrink-0">
             <a
-              href={siteConfig.contact.phoneTel}
+              href={contact.phoneTel}
+              data-track="click_phone"
               className="inline-flex items-center gap-2 bg-blue-700 hover:bg-blue-600 text-white text-xs font-semibold px-4 py-3 rounded-xl transition-all shadow-ambient-sm active:scale-95"
             >
               <Phone className="w-3.5 h-3.5" strokeWidth={1.75} />
-              <span>{siteConfig.contact.phone}</span>
+              <span>{contact.phone}</span>
             </a>
             <a
-              href={siteConfig.contact.kakaoChatUrl}
+              href={contact.kakaoChatUrl}
+              data-track="click_kakao"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 bg-[#FEE500] hover:bg-yellow-400 text-[#3C1E1E] text-xs font-bold px-4 py-3 rounded-xl transition-all shadow-ambient-sm active:scale-95"
             >
               <MessageCircle className="w-3.5 h-3.5 fill-current" strokeWidth={1.75} />
-              <span>카톡 1:1 상담</span>
+              <span>{faqSection.kakaoButton}</span>
             </a>
           </div>
         </div>

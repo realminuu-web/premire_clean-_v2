@@ -17,7 +17,7 @@ import {
   Eye,
   AlertTriangle,
 } from 'lucide-react';
-import { siteConfig } from '@/config/site';
+import { scrollToId, useContent } from '@/components/ContentProvider';
 
 const ZONE_ICONS = {
   kitchen: UtensilsCrossed,
@@ -30,7 +30,7 @@ const ZONE_ICONS = {
 type ViewMode = 'after' | 'before' | 'split';
 
 export default function CleaningProcess() {
-  const zones = siteConfig.cleaningManualZones;
+  const { process, cleaningManualZones: zones } = useContent();
   const [activeZoneIndex, setActiveZoneIndex] = useState(0);
   const [viewMode, setViewMode] = useState<ViewMode>('after');
 
@@ -45,18 +45,7 @@ export default function CleaningProcess() {
     setActiveZoneIndex((prev) => (prev + 1) % zones.length);
   };
 
-  const scrollToContact = () => {
-    const el = document.querySelector('#contact');
-    if (el) {
-      const headerOffset = 75;
-      const elementPosition = el.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: 'smooth',
-      });
-    }
-  };
+  const scrollToContact = () => scrollToId('#contact');
 
   return (
     <section id="process" className="py-20 lg:py-28 2xl:py-36 bg-slate-50 relative overflow-hidden">
@@ -70,16 +59,16 @@ export default function CleaningProcess() {
         <div className="text-center max-w-3xl mx-auto space-y-3">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-50 text-blue-700 text-xs font-semibold uppercase tracking-wider border border-blue-100">
             <Sparkles className="w-3.5 h-3.5" strokeWidth={1.75} />
-            <span>BEFORE & AFTER SHOWCASE</span>
+            <span>{process.eyebrow}</span>
           </div>
 
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 tracking-[-0.03em] break-keep">
-            결과로 증명하는 <br className="hidden sm:inline" />
-            <span className="text-blue-700 inline-block">구역별 비포 & 애프터</span>
+            {process.title1} <br className="hidden sm:inline" />
+            <span className="text-blue-700 inline-block">{process.title2}</span>
           </h2>
 
           <p className="text-sm sm:text-base text-slate-600 max-w-2xl mx-auto break-keep leading-relaxed font-normal">
-            보이지 않는 구석과 찌든 때까지 복원하는 프리미어 클린의 실제 시공 전·후 현장입니다.
+            {process.description}
           </p>
         </div>
 
@@ -131,7 +120,7 @@ export default function CleaningProcess() {
                 }`}
               >
                 <AlertTriangle className="w-3.5 h-3.5 text-amber-400" strokeWidth={1.75} />
-                <span>시공 전 (BEFORE)</span>
+                <span>{process.beforeButton}</span>
               </button>
               <button
                 onClick={() => setViewMode('after')}
@@ -142,7 +131,7 @@ export default function CleaningProcess() {
                 }`}
               >
                 <Sparkles className="w-3.5 h-3.5 text-sky-200" strokeWidth={1.75} />
-                <span>시공 후 (AFTER)</span>
+                <span>{process.afterButton}</span>
               </button>
               <button
                 onClick={() => setViewMode('split')}
@@ -153,7 +142,7 @@ export default function CleaningProcess() {
                 }`}
               >
                 <Split className="w-3.5 h-3.5 text-indigo-200" strokeWidth={1.75} />
-                <span>반반 비교</span>
+                <span>{process.splitButton}</span>
               </button>
             </div>
           </div>
@@ -174,7 +163,7 @@ export default function CleaningProcess() {
                 >
                   <div className="absolute top-3 sm:top-4 right-3 sm:right-4 bg-blue-700/90 backdrop-blur-md text-white text-xs font-semibold px-3 py-1 rounded-lg shadow-sm flex items-center gap-1.5">
                     <Sparkles className="w-3.5 h-3.5 text-sky-200" strokeWidth={1.75} />
-                    <span>AFTER (정밀 멸균 시공 완료)</span>
+                    <span>{process.afterLabel}</span>
                   </div>
                 </motion.div>
               )}
@@ -191,7 +180,7 @@ export default function CleaningProcess() {
                 >
                   <div className="absolute top-3 sm:top-4 left-3 sm:left-4 bg-slate-900/85 backdrop-blur-md text-white text-xs font-semibold px-3 py-1 rounded-lg shadow-sm flex items-center gap-1.5">
                     <AlertTriangle className="w-3.5 h-3.5 text-amber-400" strokeWidth={1.75} />
-                    <span>BEFORE (시공 전 오염 상태)</span>
+                    <span>{process.beforeLabel}</span>
                   </div>
                 </motion.div>
               )}
@@ -245,7 +234,7 @@ export default function CleaningProcess() {
 
             {/* Tap Hint for Mobile */}
             <div className="absolute bottom-2.5 left-1/2 -translate-x-1/2 bg-black/60 backdrop-blur-sm text-white/90 text-[11px] px-3 py-1 rounded-full pointer-events-none font-medium">
-              상단 버튼을 눌러 시공 전/후를 비교해 보세요
+              {process.hint}
             </div>
           </div>
 
@@ -266,14 +255,15 @@ export default function CleaningProcess() {
             <div className="flex items-center gap-3 flex-shrink-0 pt-2 sm:pt-0">
               <div className="hidden lg:flex items-center gap-1.5 text-xs text-slate-500 font-medium">
                 <ShieldCheck className="w-4 h-4 text-blue-700" strokeWidth={1.75} />
-                <span>100% 직영팀 직접 시공</span>
+                <span>{process.directNote}</span>
               </div>
 
               <button
+                data-track="click_quote"
                 onClick={scrollToContact}
                 className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-blue-700 hover:bg-blue-800 text-white font-semibold text-xs px-5 py-3 rounded-xl shadow-ambient-sm transition-all active:scale-95 cursor-pointer"
               >
-                <span>이 구역 맞춤 견적 문의</span>
+                <span>{process.cta}</span>
                 <ArrowRight className="w-3.5 h-3.5" strokeWidth={1.75} />
               </button>
             </div>

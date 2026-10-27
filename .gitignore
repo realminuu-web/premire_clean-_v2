@@ -40,3 +40,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# 관리자 페이지 로컬 저장소 (개발용)
+/.data/
+/public/uploads/

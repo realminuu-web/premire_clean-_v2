@@ -3,11 +3,12 @@
 import React, { useState, useEffect } from 'react';
 import { ArrowUp, MessageCircle } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { siteConfig } from '@/config/site';
+import { useContent } from '@/components/ContentProvider';
 
 export default function FloatingActions() {
   const [showScrollTop, setShowScrollTop] = useState(false);
-  const kakaoUrl = siteConfig.contact.kakaoChatUrl;
+  const { contact, mobileBar } = useContent();
+  const kakaoUrl = contact.kakaoChatUrl;
 
   useEffect(() => {
     const handleScroll = () => {
@@ -45,7 +46,7 @@ export default function FloatingActions() {
         
         {/* Tooltip bubble on desktop */}
         <div className="absolute right-full top-1/2 -translate-y-1/2 mr-3 px-3 py-1.5 bg-slate-900/90 text-white text-xs font-bold rounded-xl shadow-lg whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
-          실시간 1:1 카톡 상담
+          {mobileBar.kakaoTooltip}
           <div className="absolute top-1/2 -right-1 -translate-y-1/2 border-4 border-transparent border-l-slate-900/90" />
         </div>
 
@@ -55,6 +56,7 @@ export default function FloatingActions() {
         {/* Main Kakao Floating Action Button */}
         <a
           href={kakaoUrl}
+          data-track="click_kakao"
           target="_blank"
           rel="noopener noreferrer"
           className="relative flex items-center justify-center w-14 h-14 rounded-full bg-[#FEE500] text-[#3C1E1E] shadow-xl hover:shadow-2xl hover:scale-105 active:scale-95 transition-all duration-300 cursor-pointer"

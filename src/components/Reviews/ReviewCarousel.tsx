@@ -4,12 +4,14 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Star, ChevronLeft, ChevronRight, CheckCircle2, Quote, Sparkles, Camera } from 'lucide-react';
 import { ReviewItem } from '@/types';
+import { useContent } from '@/components/ContentProvider';
 
 interface ReviewCarouselProps {
   reviews: ReviewItem[];
 }
 
 export default function ReviewCarousel({ reviews }: ReviewCarouselProps) {
+  const { reviewsSection: t } = useContent();
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
 
@@ -56,14 +58,14 @@ export default function ReviewCarousel({ reviews }: ReviewCarouselProps) {
           <div className="flex items-center gap-2">
             <span className="px-3 py-1 rounded-full bg-blue-50 text-blue-700 text-xs font-semibold border border-blue-200/80 flex items-center gap-1.5">
               <Sparkles className="w-3.5 h-3.5 text-blue-600" strokeWidth={1.75} />
-              <span>실시간 고객 검증 평가 (최신 {displayReviews.length}건)</span>
+              <span>{t.carouselBadge} (최신 {displayReviews.length}건)</span>
             </span>
             <span className="text-xs font-semibold text-slate-400">
               ({currentIndex + 1} / {displayReviews.length})
             </span>
           </div>
           <h4 className="text-lg sm:text-2xl font-bold text-slate-900 mt-1.5 tracking-tight break-keep">
-            고객님들이 직접 증명하는 프리미어 클린의 품격
+            {t.carouselTitle}
           </h4>
         </div>
 
@@ -142,7 +144,7 @@ export default function ReviewCarousel({ reviews }: ReviewCarouselProps) {
                     <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-transparent" />
                     <div className="absolute top-2.5 left-2.5 bg-blue-700/90 backdrop-blur-md text-white text-[10px] font-semibold px-2.5 py-1 rounded-md flex items-center gap-1">
                       <Camera className="w-3 h-3 text-sky-200" strokeWidth={1.75} />
-                      <span>시공 후 현장 실사</span>
+                      <span>{t.photoBadge}</span>
                     </div>
                     <div className="absolute bottom-2.5 left-3 right-3 text-white">
                       <span className="text-[11px] font-semibold truncate block">{current.serviceType} 완료</span>
@@ -161,7 +163,7 @@ export default function ReviewCarousel({ reviews }: ReviewCarouselProps) {
                     <span className="font-bold text-sm sm:text-base text-slate-900">{current.author}</span>
                     <span className="flex items-center gap-0.5 text-[10px] sm:text-[11px] font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200">
                       <CheckCircle2 className="w-3 h-3 text-emerald-600" strokeWidth={1.75} />
-                      직영 검수 완료
+                      {t.verifiedBadge}
                     </span>
                   </div>
                   <p className="text-[11px] sm:text-xs text-slate-500 font-normal">{current.location} · {current.date}</p>
@@ -181,16 +183,16 @@ export default function ReviewCarousel({ reviews }: ReviewCarouselProps) {
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-transparent" />
                   <div className="absolute top-3 left-3 bg-blue-700/90 backdrop-blur-md text-white text-[10px] font-semibold px-2.5 py-1 rounded-md flex items-center gap-1">
                     <Camera className="w-3 h-3 text-sky-200" strokeWidth={1.75} />
-                    <span>시공 후 현장 실사</span>
+                    <span>{t.photoBadge}</span>
                   </div>
                   <div className="absolute bottom-3 left-3 right-3 text-white">
-                    <span className="text-[11px] font-semibold uppercase text-sky-300">ACTUAL WORK AFTER</span>
+                    <span className="text-[11px] font-semibold uppercase text-sky-300">{t.photoEyebrow}</span>
                     <p className="text-xs font-semibold truncate">{current.serviceType}</p>
                   </div>
                 </div>
               ) : (
                 <div className="w-full max-w-[280px] aspect-[4/3] rounded-2xl bg-slate-100 flex items-center justify-center text-slate-400 text-xs">
-                  <span>현장 실사 사진</span>
+                  <span>{t.noPhoto}</span>
                 </div>
               )}
             </div>
@@ -202,7 +204,7 @@ export default function ReviewCarousel({ reviews }: ReviewCarouselProps) {
       {/* Progress Dots Indicator */}
       <div className="relative z-10 pt-4 border-t border-slate-100 flex items-center justify-between">
         <span className="text-[11px] sm:text-xs text-slate-400 font-normal">
-          마우스를 올리거나 터치하면 자동 넘김이 일시 정지됩니다
+          {t.pauseHint}
         </span>
         <div className="flex items-center gap-1.5">
           {displayReviews.map((_, i) => (

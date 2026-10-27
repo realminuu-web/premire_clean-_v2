@@ -15,7 +15,7 @@ import {
   ChevronLeft,
   ChevronRight,
 } from 'lucide-react';
-import { siteConfig } from '@/config/site';
+import { useContent } from '@/components/ContentProvider';
 
 const ICON_MAP = {
   Users2,
@@ -29,7 +29,7 @@ const ICON_MAP = {
 };
 
 export default function About() {
-  const values = siteConfig.coreValues;
+  const { about, coreValues: values } = useContent();
   const [activeTab, setActiveTab] = useState(0);
 
   const activeValue = values[activeTab] || values[0];
@@ -55,16 +55,16 @@ export default function About() {
         <div className="text-center max-w-3xl mx-auto space-y-3">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-50 border border-blue-200/60 text-blue-700 text-xs font-semibold tracking-wide uppercase shadow-xs">
             <Sparkles className="w-3.5 h-3.5 text-blue-600" strokeWidth={2} />
-            <span>CRAFTSMANSHIP & CORE STANDARDS</span>
+            <span>{about.eyebrow}</span>
           </div>
           
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 tracking-tight break-keep">
-            프리미어 클린이 타협하지 않는{' '}
-            <span className="text-blue-700 inline-block">4가지 시공 원칙</span>
+            {about.title1}{' '}
+            <span className="text-blue-700 inline-block">{about.title2}</span>
           </h2>
 
           <p className="text-sm sm:text-base text-slate-600 font-normal leading-relaxed break-keep max-w-2xl mx-auto">
-            보이는 곳만 닦아서는 프리미어가 아닙니다. 기술과 원칙이 만드는 차이를 경험해 보세요.
+            {about.description}
           </p>
         </div>
 

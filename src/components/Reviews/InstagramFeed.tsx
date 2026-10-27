@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { Heart, MessageCircle, BadgeCheck, ExternalLink } from 'lucide-react';
-import { siteConfig } from '@/config/site';
+import { useContent } from '@/components/ContentProvider';
 
 function InstagramIcon({ className = "w-4 h-4" }: { className?: string }) {
   return (
@@ -23,6 +23,7 @@ function InstagramIcon({ className = "w-4 h-4" }: { className?: string }) {
 }
 
 export default function InstagramFeed() {
+  const siteConfig = useContent();
   const maxPosts = siteConfig.instagram?.instagramMaxPosts || 1;
   const allPosts = siteConfig.instagram?.posts || [];
   const visiblePosts = allPosts.slice(0, Math.min(Math.max(maxPosts, 1), 6));

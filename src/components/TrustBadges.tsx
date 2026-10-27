@@ -3,7 +3,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { ShieldCheck, CreditCard, RotateCcw, Coffee, Sparkles, CheckCircle2, Receipt, HandCoins } from 'lucide-react';
-import { siteConfig } from '@/config/site';
+import { useContent } from '@/components/ContentProvider';
 
 const ICON_MAP = {
   ShieldCheck,
@@ -15,10 +15,10 @@ const ICON_MAP = {
 };
 
 export default function TrustBadges() {
-  const badges = siteConfig.trustBadges;
+  const { trust, trustBadges: badges } = useContent();
 
   return (
-    <section className="py-6 sm:py-7 bg-gradient-to-b from-white via-slate-50/70 to-white border-y border-slate-200/80 relative">
+    <section id="trust" className="py-6 sm:py-7 bg-gradient-to-b from-white via-slate-50/70 to-white border-y border-slate-200/80 relative">
       <div className="max-w-7xl 2xl:max-w-[1680px] 3xl:max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8 2xl:px-12">
         
         {/* Sleek Certificate Header Bar */}
@@ -29,18 +29,18 @@ export default function TrustBadges() {
             </div>
             <div>
               <span className="font-bold text-slate-900 tracking-tight text-sm sm:text-base">
-                프리미어 클린 4대 고객 안심 보증 서약제
+                {trust.title}
               </span>
               <span className="hidden md:inline text-slate-300 mx-2">|</span>
               <span className="hidden md:inline text-xs text-slate-500 font-medium">
-                파손·선금·A/S·추가금 우려를 법적·금전적으로 100% 사전 차단합니다
+                {trust.subtitle}
               </span>
             </div>
           </div>
 
           <div className="inline-flex items-center gap-1.5 text-[11px] font-semibold text-emerald-700 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200/80 self-start sm:self-auto">
             <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" strokeWidth={2} />
-            <span>본사 직영 공식 보증</span>
+            <span>{trust.seal}</span>
           </div>
         </div>
 

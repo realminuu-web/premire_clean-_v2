@@ -23,12 +23,21 @@ export interface InquiryFormData {
 export interface ServiceDetail {
   id: string;
   category: 'home' | 'commercial';
+  eyebrow: string;
+  badge: string;
   title: string;
   description: string;
   highlights: string[];
   features: string[];
-  badge: string;
+  footerNote: string;
+  cta: string;
   image: string;
+}
+
+/** 관리자가 올린 시공 후기 (published=false 면 홈페이지에서 숨김) */
+export interface StoredReview extends ReviewItem {
+  published: boolean;
+  createdAt: string;
 }
 
 export interface TrustBadgeItem {
@@ -68,7 +77,7 @@ export interface FaqItem {
   id: string;
   question: string;
   answer: string;
-  category: '견적/요금' | '시공/소요시간' | '안심/보상' | '검수/결제';
+  category: string;
 }
 
 export interface ReceiptReviewItem {
