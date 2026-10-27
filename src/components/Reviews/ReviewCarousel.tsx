@@ -2,9 +2,10 @@
 
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Star, ChevronLeft, ChevronRight, CheckCircle2, Quote, Sparkles, Camera } from 'lucide-react';
+import { Star, ChevronLeft, ChevronRight, CheckCircle2, Quote, Sparkles } from 'lucide-react';
 import { ReviewItem } from '@/types';
 import { useContent } from '@/components/ContentProvider';
+import BeforeAfterPhoto from './BeforeAfterPhoto';
 
 interface ReviewCarouselProps {
   reviews: ReviewItem[];
@@ -137,16 +138,16 @@ export default function ReviewCarousel({ reviews }: ReviewCarouselProps) {
               {photoToShow && (
                 <div className="block lg:hidden pt-1">
                   <div className="relative w-full aspect-[16/10] sm:aspect-[16/9] rounded-2xl overflow-hidden border border-slate-200 shadow-sm group">
-                    <div
-                      className="w-full h-full bg-cover bg-center transition-transform duration-500"
-                      style={{ backgroundImage: `url('${photoToShow}')` }}
+                    <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-slate-950/70 to-transparent" />
+                    <BeforeAfterPhoto
+                      key={`m-${current.id}`}
+                      before={current.beforeImage}
+                      after={current.afterImage}
+                      beforeLabel={t.beforeTag}
+                      afterLabel={t.afterTag}
+                      singleLabel={t.photoBadge}
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-transparent" />
-                    <div className="absolute top-2.5 left-2.5 bg-blue-700/90 backdrop-blur-md text-white text-[10px] font-semibold px-2.5 py-1 rounded-md flex items-center gap-1">
-                      <Camera className="w-3 h-3 text-sky-200" strokeWidth={1.75} />
-                      <span>{t.photoBadge}</span>
-                    </div>
-                    <div className="absolute bottom-2.5 left-3 right-3 text-white">
+                    <div className="absolute bottom-2.5 left-3 right-16 text-white">
                       <span className="text-[11px] font-semibold truncate block">{current.serviceType} 완료</span>
                     </div>
                   </div>
@@ -176,16 +177,16 @@ export default function ReviewCarousel({ reviews }: ReviewCarouselProps) {
             <div className="lg:col-span-4 hidden lg:flex flex-col items-center justify-center">
               {photoToShow ? (
                 <div className="relative w-full max-w-[280px] aspect-[4/3] rounded-2xl overflow-hidden border border-slate-200 shadow-sm group">
-                  <div
-                    className="w-full h-full bg-cover bg-center transition-transform duration-500 group-hover:scale-105"
-                    style={{ backgroundImage: `url('${photoToShow}')` }}
+                  <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-slate-950/70 to-transparent" />
+                  <BeforeAfterPhoto
+                    key={`d-${current.id}`}
+                    before={current.beforeImage}
+                    after={current.afterImage}
+                    beforeLabel={t.beforeTag}
+                    afterLabel={t.afterTag}
+                    singleLabel={t.photoBadge}
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-transparent" />
-                  <div className="absolute top-3 left-3 bg-blue-700/90 backdrop-blur-md text-white text-[10px] font-semibold px-2.5 py-1 rounded-md flex items-center gap-1">
-                    <Camera className="w-3 h-3 text-sky-200" strokeWidth={1.75} />
-                    <span>{t.photoBadge}</span>
-                  </div>
-                  <div className="absolute bottom-3 left-3 right-3 text-white">
+                  <div className="absolute bottom-3 left-3 right-16 text-white">
                     <span className="text-[11px] font-semibold uppercase text-sky-300">{t.photoEyebrow}</span>
                     <p className="text-xs font-semibold truncate">{current.serviceType}</p>
                   </div>

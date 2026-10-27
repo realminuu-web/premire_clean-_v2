@@ -441,6 +441,8 @@ export const siteConfig = {
     carouselBadge: '실시간 고객 검증 평가',
     carouselTitle: '고객님들이 직접 증명하는 프리미어 클린의 품격',
     photoBadge: '시공 후 현장 실사',
+    beforeTag: '청소 전', // 전·후 사진이 둘 다 있을 때, 처음 보이는 사진 위 표시
+    afterTag: '청소 후', // 잠시 뒤 바뀌는 사진 위 표시
     photoEyebrow: 'ACTUAL WORK AFTER',
     verifiedBadge: '직영 검수 완료',
     pauseHint: '마우스를 올리거나 터치하면 자동 넘김이 일시 정지됩니다',
