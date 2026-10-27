@@ -8,16 +8,15 @@ import {
   AppWindow,
   Archive,
   Wind,
-  Sparkles,
   ArrowRight,
   ShieldCheck,
   ChevronLeft,
   ChevronRight,
   Split,
-  Eye,
   AlertTriangle,
 } from 'lucide-react';
 import { scrollToId, useContent } from '@/components/ContentProvider';
+import SectionHeading from '@/components/SectionHeading';
 
 const ZONE_ICONS = {
   kitchen: UtensilsCrossed,
@@ -48,29 +47,9 @@ export default function CleaningProcess() {
   const scrollToContact = () => scrollToId('#contact');
 
   return (
-    <section id="process" className="py-20 lg:py-28 2xl:py-36 bg-slate-50 relative overflow-hidden">
-      {/* Background Subtle Gradient Spheres */}
-      <div className="absolute top-1/4 left-0 w-96 h-96 bg-blue-100/30 rounded-full blur-3xl pointer-events-none -translate-x-1/2" />
-      <div className="absolute bottom-1/4 right-0 w-96 h-96 bg-sky-100/30 rounded-full blur-3xl pointer-events-none translate-x-1/2" />
-
-      <div className="max-w-6xl 2xl:max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8 lg:space-y-10 relative z-10">
-        
-        {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto space-y-3">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-50 text-blue-700 text-xs font-semibold uppercase tracking-wider border border-blue-100">
-            <Sparkles className="w-3.5 h-3.5" strokeWidth={1.75} />
-            <span>{process.eyebrow}</span>
-          </div>
-
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 tracking-[-0.03em] break-keep">
-            {process.title1} <br className="hidden sm:inline" />
-            <span className="text-blue-700 inline-block">{process.title2}</span>
-          </h2>
-
-          <p className="text-sm sm:text-base text-slate-600 max-w-2xl mx-auto break-keep leading-relaxed font-normal">
-            {process.description}
-          </p>
-        </div>
+    <section id="process" className="py-20 sm:py-24 lg:py-32 bg-slate-50 relative overflow-hidden">
+      <div className="max-w-6xl 2xl:max-w-7xl mx-auto px-5 sm:px-6 lg:px-8 space-y-10 lg:space-y-12 relative z-10">
+        <SectionHeading flush title1={process.title1} title2={process.title2} description={process.description} />
 
         {/* 1. Zone Selector Pills */}
         <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-2.5">
@@ -130,7 +109,6 @@ export default function CleaningProcess() {
                     : 'text-slate-600 hover:text-slate-900'
                 }`}
               >
-                <Sparkles className="w-3.5 h-3.5 text-sky-200" strokeWidth={1.75} />
                 <span>{process.afterButton}</span>
               </button>
               <button
@@ -162,8 +140,7 @@ export default function CleaningProcess() {
                   style={{ backgroundImage: `url('${currentZone.afterImage}')` }}
                 >
                   <div className="absolute top-3 sm:top-4 right-3 sm:right-4 bg-blue-700/90 backdrop-blur-md text-white text-xs font-semibold px-3 py-1 rounded-lg shadow-sm flex items-center gap-1.5">
-                    <Sparkles className="w-3.5 h-3.5 text-sky-200" strokeWidth={1.75} />
-                    <span>{process.afterLabel}</span>
+                        <span>{process.afterLabel}</span>
                   </div>
                 </motion.div>
               )}

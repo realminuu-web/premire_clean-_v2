@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { Sparkles, Phone, Mail, MapPin, ShieldCheck } from 'lucide-react';
+import { Phone, Mail, MapPin, ShieldCheck } from 'lucide-react';
 import { useContent } from '@/components/ContentProvider';
 
 export default function Footer() {
@@ -15,10 +15,7 @@ export default function Footer() {
           {/* Brand Col (5 cols) */}
           <div className="md:col-span-5 space-y-4">
             <div className="flex items-center gap-2.5">
-              <div className="w-8 h-8 rounded-lg bg-blue-700 flex items-center justify-center text-white">
-                <Sparkles className="w-4 h-4 text-sky-200" strokeWidth={1.75} />
-              </div>
-              <span className="font-bold text-lg text-white tracking-tight">
+             <span className="font-bold text-lg text-white tracking-tight">
                 {header.logoMain} <span className="text-blue-500">{header.logoAccent}</span>
               </span>
             </div>

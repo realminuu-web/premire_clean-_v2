@@ -1,7 +1,8 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Send, Phone, Clock, ShieldAlert, CheckCircle2, Home, Building2, Sparkles, AlertCircle } from 'lucide-react';
+import { Send, Phone, Clock, ShieldAlert, CheckCircle2, Home, Building2, AlertCircle } from 'lucide-react';
+import SectionHeading from '@/components/SectionHeading';
 import confetti from 'canvas-confetti';
 import { sendInquiryEmail } from '@/lib/emailjs';
 import { InquiryFormData } from '@/types';
@@ -106,27 +107,9 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="py-20 lg:py-28 2xl:py-36 bg-slate-900 text-slate-100 relative overflow-hidden">
-      {/* Background Decorative Gradients */}
-      <div className="absolute top-0 right-1/4 w-[600px] h-[600px] bg-blue-600/10 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-0 left-1/4 w-[600px] h-[600px] bg-indigo-600/10 rounded-full blur-3xl pointer-events-none" />
-
-      <div className="max-w-7xl 2xl:max-w-[1680px] 3xl:max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8 2xl:px-12 relative z-10">
-        
-        {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16 space-y-3">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-950/80 text-sky-300 text-xs font-semibold uppercase tracking-wider border border-blue-800/60">
-            <Sparkles className="w-3.5 h-3.5" strokeWidth={1.75} />
-            <span>{t.eyebrow}</span>
-          </div>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white tracking-[-0.03em] break-keep">
-            {t.title1}{' '}
-            <span className="text-sky-400 inline-block">{t.title2}</span>
-          </h2>
-          <p className="text-sm sm:text-base text-slate-300 max-w-lg mx-auto break-keep text-center leading-relaxed font-normal">
-            {contact.formSubtitle}
-          </p>
-        </div>
+    <section id="contact" className="py-20 sm:py-24 lg:py-32 bg-slate-900 text-slate-100 relative overflow-hidden">
+      <div className="max-w-7xl 2xl:max-w-[1680px] 3xl:max-w-[1920px] mx-auto px-5 sm:px-6 lg:px-8 2xl:px-12 relative z-10">
+        <SectionHeading dark title1={t.title1} title2={t.title2} description={contact.formSubtitle} />
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start">
           

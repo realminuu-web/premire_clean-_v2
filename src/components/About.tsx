@@ -16,6 +16,7 @@ import {
   ChevronRight,
 } from 'lucide-react';
 import { useContent } from '@/components/ContentProvider';
+import SectionHeading from '@/components/SectionHeading';
 
 const ICON_MAP = {
   Users2,
@@ -44,29 +45,9 @@ export default function About() {
   };
 
   return (
-    <section id="about" className="py-20 lg:py-28 2xl:py-32 bg-white relative overflow-hidden">
-      {/* Decorative blurred background lights */}
-      <div className="absolute top-1/4 left-0 w-96 h-96 bg-blue-100/50 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-10 right-0 w-96 h-96 bg-indigo-100/50 rounded-full blur-3xl pointer-events-none" />
-
-      <div className="max-w-7xl 2xl:max-w-[1680px] 3xl:max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8 2xl:px-12 relative z-10 space-y-10 lg:space-y-14">
-        
-        {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto space-y-3">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-50 border border-blue-200/60 text-blue-700 text-xs font-semibold tracking-wide uppercase shadow-xs">
-            <Sparkles className="w-3.5 h-3.5 text-blue-600" strokeWidth={2} />
-            <span>{about.eyebrow}</span>
-          </div>
-          
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 tracking-tight break-keep">
-            {about.title1}{' '}
-            <span className="text-blue-700 inline-block">{about.title2}</span>
-          </h2>
-
-          <p className="text-sm sm:text-base text-slate-600 font-normal leading-relaxed break-keep max-w-2xl mx-auto">
-            {about.description}
-          </p>
-        </div>
+    <section id="about" className="py-20 sm:py-24 lg:py-32 bg-white relative overflow-hidden">
+      <div className="max-w-7xl 2xl:max-w-[1680px] 3xl:max-w-[1920px] mx-auto px-5 sm:px-6 lg:px-8 2xl:px-12 relative z-10 space-y-12 lg:space-y-16">
+        <SectionHeading flush title1={about.title1} title2={about.title2} description={about.description} />
 
         {/* 📱 Mobile View: Button-Tab Switcher (스크롤 단축 & 원터치 전환) */}
         <div className="block lg:hidden space-y-5">

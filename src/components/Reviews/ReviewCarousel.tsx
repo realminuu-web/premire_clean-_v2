@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Star, ChevronLeft, ChevronRight, CheckCircle2, Quote, Sparkles } from 'lucide-react';
+import { Star, ChevronLeft, ChevronRight, CheckCircle2, Quote } from 'lucide-react';
 import { ReviewItem } from '@/types';
 import { useContent } from '@/components/ContentProvider';
 import BeforeAfterPhoto from './BeforeAfterPhoto';
@@ -49,16 +49,12 @@ export default function ReviewCarousel({ reviews }: ReviewCarouselProps) {
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
     >
-      {/* Subtle Luminous Background Glows */}
-      <div className="absolute top-0 right-0 w-80 h-80 bg-blue-100/40 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-80 h-80 bg-sky-100/40 rounded-full blur-3xl pointer-events-none" />
 
       {/* Header of the Carousel */}
       <div className="relative z-10 flex flex-col sm:flex-row items-start sm:items-center justify-between pb-5 border-b border-slate-100 gap-3">
         <div>
           <div className="flex items-center gap-2">
-            <span className="px-3 py-1 rounded-full bg-blue-50 text-blue-700 text-xs font-semibold border border-blue-200/80 flex items-center gap-1.5">
-              <Sparkles className="w-3.5 h-3.5 text-blue-600" strokeWidth={1.75} />
+            <span className="px-3 py-1 rounded-full bg-blue-50 text-blue-700 text-xs font-semibold border border-blue-200/80">
               <span>{t.carouselBadge} (최신 {displayReviews.length}건)</span>
             </span>
             <span className="text-xs font-semibold text-slate-400">

@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Home, Building2, Check, ArrowRight } from 'lucide-react';
 import { scrollToId, useContent } from '@/components/ContentProvider';
+import SectionHeading from '@/components/SectionHeading';
 import type { ServiceDetail } from '@/types';
 
 function ServiceCard({ service, tone, areasLabel, checkLabel }: {
@@ -95,18 +96,9 @@ export default function Services() {
   const active = activeTab === 'home' ? services.home : services.commercial;
 
   return (
-    <section id="services" className="py-20 lg:py-28 2xl:py-36 bg-white relative">
-      <div className="max-w-7xl 2xl:max-w-[1680px] 3xl:max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8 2xl:px-12">
-        {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-12 space-y-3">
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 tracking-[-0.03em] break-keep">
-            {services.title1} <br className="hidden sm:inline" />
-            <span className="text-blue-700 inline-block">{services.title2}</span>
-          </h2>
-          <p className="text-sm sm:text-base text-slate-600 break-keep max-w-2xl mx-auto leading-relaxed font-normal">
-            {services.description}
-          </p>
-        </div>
+    <section id="services" className="py-20 sm:py-24 lg:py-32 bg-white relative">
+      <div className="max-w-7xl 2xl:max-w-[1680px] 3xl:max-w-[1920px] mx-auto px-5 sm:px-6 lg:px-8 2xl:px-12">
+        <SectionHeading title1={services.title1} title2={services.title2} description={services.description} />
 
         {/* Mobile: Segmented Tab Switcher */}
         <div className="flex justify-center mb-8 lg:hidden">

@@ -1,5 +1,6 @@
 import { ImageResponse } from 'next/og';
 import { siteConfig } from '@/config/site';
+import { getContent } from '@/lib/content';
 
 export const alt = `${siteConfig.brand.name} | ${siteConfig.brand.slogan}`;
 export const size = {
@@ -8,7 +9,23 @@ export const size = {
 };
 export const contentType = 'image/png';
 
+/**
+ * 카톡·문자로 링크를 보낼 때 보이는 썸네일.
+ * 관리자 [검색 노출] > [카톡 공유 썸네일 사진]에 사진을 올리면 그 사진을 1200×630 으로 맞춰 씁니다.
+ * 비워 두면 아래 기본 썸네일(남색 바탕 + 회사 이름)을 씁니다.
+ */
 export default async function Image() {
+  const { seo } = await getContent();
+  if (seo.ogImage.startsWith('https://')) {
+    return new ImageResponse(
+      (
+        // eslint-disable-next-line @next/next/no-img-element, jsx-a11y/alt-text
+        <img src={seo.ogImage} width={1200} height={630} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+      ),
+      { ...size },
+    );
+  }
+
   return new ImageResponse(
     (
       <div

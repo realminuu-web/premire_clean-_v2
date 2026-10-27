@@ -130,7 +130,6 @@ export const editorGroups: EditorGroup[] = [
     title: '구역별 비포 · 애프터',
     anchor: '#process',
     items: [
-      { path: 'process.eyebrow', label: '맨 위 작은 꼬리표', loc: '📍 비포·애프터 섹션 맨 위 파란 둥근 글자' },
       { path: 'process.title1', label: '제목 첫 줄', loc: '📍 섹션 맨 위 큰 검은 글씨' },
       { path: 'process.title2', label: '제목 둘째 줄 (파란색)', loc: '📍 섹션 맨 위 큰 파란 글씨' },
       { path: 'process.description', label: '제목 아래 설명', loc: '📍 제목 아래 회색 문단', kind: 'textarea' },
@@ -164,7 +163,6 @@ export const editorGroups: EditorGroup[] = [
     title: '4대 시공 원칙',
     anchor: '#about',
     items: [
-      { path: 'about.eyebrow', label: '맨 위 작은 꼬리표', loc: '📍 시공 원칙 섹션 맨 위 파란 둥근 글자' },
       { path: 'about.title1', label: '제목 앞부분', loc: '📍 섹션 큰 제목의 검은 부분' },
       { path: 'about.title2', label: '제목 뒷부분 (파란색)', loc: '📍 섹션 큰 제목의 파란 부분' },
       { path: 'about.description', label: '제목 아래 설명', loc: '📍 제목 아래 회색 문단', kind: 'textarea' },
@@ -190,7 +188,6 @@ export const editorGroups: EditorGroup[] = [
     anchor: '#reviews',
     note: '후기 내용과 사진은 왼쪽 [시공 후기] 메뉴에서 올립니다. 여기는 후기 칸 주변 글자입니다.',
     items: [
-      { path: 'reviewsSection.eyebrow', label: '맨 위 작은 꼬리표', loc: '📍 후기 섹션 맨 위 파란 둥근 글자' },
       { path: 'reviewsSection.title1', label: '제목 앞부분', loc: '📍 섹션 큰 제목의 검은 부분' },
       { path: 'reviewsSection.title2', label: '제목 뒷부분 (파란색)', loc: '📍 섹션 큰 제목의 파란 부분' },
       { path: 'reviewsSection.description', label: '제목 아래 설명', loc: '📍 제목 아래 회색 문단', kind: 'textarea' },
@@ -211,7 +208,6 @@ export const editorGroups: EditorGroup[] = [
     title: '견적 신청 칸',
     anchor: '#contact',
     items: [
-      { path: 'contactSection.eyebrow', label: '맨 위 작은 꼬리표', loc: '📍 견적 신청 섹션(짙은 남색) 맨 위 둥근 글자' },
       { path: 'contactSection.title1', label: '제목 앞부분', loc: '📍 섹션 큰 흰 글씨' },
       { path: 'contactSection.title2', label: '제목 뒷부분 (하늘색)', loc: '📍 섹션 큰 하늘색 글씨' },
       { path: 'contact.formSubtitle', label: '제목 아래 설명', loc: '📍 제목 아래 회색 문단', kind: 'textarea' },
@@ -256,7 +252,6 @@ export const editorGroups: EditorGroup[] = [
     title: '자주 묻는 질문',
     anchor: '#faq',
     items: [
-      { path: 'faqSection.eyebrow', label: '맨 위 작은 꼬리표', loc: '📍 질문 섹션 맨 위 파란 둥근 글자' },
       { path: 'faqSection.title1', label: '제목 첫 줄', loc: '📍 섹션 큰 검은 글씨' },
       { path: 'faqSection.title2', label: '제목 둘째 줄 (파란색)', loc: '📍 섹션 큰 파란 글씨' },
       { path: 'faqSection.description', label: '제목 아래 설명', loc: '📍 제목 아래 회색 문단', kind: 'textarea' },

@@ -8,7 +8,6 @@ export async function generateMetadata(): Promise<Metadata> {
   const content = await getContent();
   const { seo, brand } = content;
   const url = siteUrl(content);
-  const images = seo.ogImage ? [{ url: seo.ogImage, width: 1200, height: 630 }] : undefined;
 
   return {
     metadataBase: new URL(url),
@@ -27,9 +26,9 @@ export async function generateMetadata(): Promise<Metadata> {
       siteName: brand.name,
       locale: 'ko_KR',
       type: 'website',
-      images,
+      // 썸네일 사진은 app/opengraph-image.tsx 가 만듭니다 (관리자에서 올린 사진이 있으면 그 사진)
     },
-    twitter: { card: 'summary_large_image', title: seo.title, description: seo.description, images },
+    twitter: { card: 'summary_large_image', title: seo.title, description: seo.description },
     verification: {
       google: seo.googleVerification || undefined,
       other: seo.naverVerification ? { 'naver-site-verification': seo.naverVerification } : {},

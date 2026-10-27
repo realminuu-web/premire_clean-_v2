@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { Sparkles, Phone, Menu, X, ArrowRight, ShieldCheck } from 'lucide-react';
+import { Phone, Menu, X, ArrowRight, ShieldCheck } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { scrollToId, useContent } from '@/components/ContentProvider';
 
@@ -39,10 +39,7 @@ export default function Header() {
         <div className="flex items-center justify-between">
           {/* Logo */}
           <a href="#" className="flex items-center gap-2.5 group transition-transform active:scale-95">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-blue-700 via-blue-600 to-indigo-600 flex items-center justify-center text-white shadow-ambient-sm">
-              <Sparkles className="w-5 h-5 text-sky-200" strokeWidth={1.75} />
-            </div>
-            <div className="flex flex-col">
+           <div className="flex flex-col">
               <span
                 className={`font-bold text-xl tracking-tight transition-colors ${
                   transparent ? 'text-white' : 'text-slate-900 group-hover:text-blue-700'

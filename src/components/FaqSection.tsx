@@ -2,8 +2,9 @@
 
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { HelpCircle, ChevronDown, Phone, MessageCircle, Sparkles } from 'lucide-react';
+import { ChevronDown, Phone, MessageCircle } from 'lucide-react';
 import { useContent } from '@/components/ContentProvider';
+import SectionHeading from '@/components/SectionHeading';
 
 export default function FaqSection() {
   const { faqSection, faqList: faqs, contact } = useContent();
@@ -14,25 +15,9 @@ export default function FaqSection() {
   };
 
   return (
-    <section id="faq" className="py-20 lg:py-28 2xl:py-36 bg-white relative">
-      <div className="max-w-4xl 2xl:max-w-5xl 3xl:max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12 2xl:space-y-16">
-        
-        {/* Header */}
-        <div className="text-center space-y-3">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-50 text-blue-700 text-xs font-semibold uppercase tracking-wider border border-blue-100">
-            <HelpCircle className="w-3.5 h-3.5" strokeWidth={1.75} />
-            <span>{faqSection.eyebrow}</span>
-          </div>
-
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 tracking-[-0.03em] break-keep">
-            {faqSection.title1} <br className="hidden sm:inline" />
-            <span className="text-blue-700 inline-block">{faqSection.title2}</span>
-          </h2>
-
-          <p className="text-sm sm:text-base text-slate-600 max-w-xl mx-auto break-keep leading-relaxed font-normal">
-            {faqSection.description}
-          </p>
-        </div>
+    <section id="faq" className="py-20 sm:py-24 lg:py-32 bg-white relative">
+      <div className="max-w-4xl 2xl:max-w-5xl 3xl:max-w-6xl mx-auto px-5 sm:px-6 lg:px-8 space-y-12 lg:space-y-16">
+        <SectionHeading flush title1={faqSection.title1} title2={faqSection.title2} description={faqSection.description} />
 
         {/* Accordion List */}
         <div className="space-y-3 sm:space-y-4">
@@ -97,10 +82,7 @@ export default function FaqSection() {
         {/* Bottom Fast Help Box */}
         <div className="p-6 sm:p-8 rounded-3xl bg-slate-900 text-white shadow-ambient-md flex flex-col sm:flex-row items-center justify-between gap-6 border border-slate-800">
           <div className="space-y-1 text-center sm:text-left">
-            <span className="text-xs font-semibold text-sky-400 flex items-center justify-center sm:justify-start gap-1">
-              <Sparkles className="w-3.5 h-3.5" strokeWidth={1.75} />
-              <span>{faqSection.helpEyebrow}</span>
-            </span>
+            <span className="block text-xs font-semibold text-sky-400">{faqSection.helpEyebrow}</span>
             <h4 className="text-lg sm:text-xl font-bold tracking-tight">{faqSection.helpTitle}</h4>
             <p className="text-xs text-slate-300 break-keep font-normal">
               {faqSection.helpDescription}

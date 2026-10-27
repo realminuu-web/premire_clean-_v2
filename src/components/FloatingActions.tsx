@@ -50,8 +50,6 @@ export default function FloatingActions() {
           <div className="absolute top-1/2 -right-1 -translate-y-1/2 border-4 border-transparent border-l-slate-900/90" />
         </div>
 
-        {/* Outer Pulsing Ring */}
-        <span className="absolute -inset-1 rounded-full bg-[#FEE500]/70 animate-ping opacity-75 pointer-events-none" />
 
         {/* Main Kakao Floating Action Button */}
         <a

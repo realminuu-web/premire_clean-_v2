@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ShieldCheck, CreditCard, RotateCcw, Coffee, Sparkles, CheckCircle2, Receipt, HandCoins } from 'lucide-react';
+import { ShieldCheck, CreditCard, RotateCcw, Coffee, CheckCircle2, Receipt, HandCoins } from 'lucide-react';
 import { useContent } from '@/components/ContentProvider';
 
 const ICON_MAP = {
@@ -18,7 +18,7 @@ export default function TrustBadges() {
   const { trust, trustBadges: badges } = useContent();
 
   return (
-    <section id="trust" className="py-6 sm:py-7 bg-gradient-to-b from-white via-slate-50/70 to-white border-y border-slate-200/80 relative">
+    <section id="trust" className="py-8 sm:py-10 bg-gradient-to-b from-white via-slate-50/70 to-white border-y border-slate-200/80 relative">
       <div className="max-w-7xl 2xl:max-w-[1680px] 3xl:max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8 2xl:px-12">
         
         {/* Sleek Certificate Header Bar */}
