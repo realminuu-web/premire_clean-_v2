@@ -30,9 +30,10 @@ export default function Areas() {
                 {g.name}
                 <span className="text-sm font-medium text-slate-500">{g.districts.length}곳</span>
               </h3>
-              <ul className="mt-5 flex flex-wrap gap-2">
+              {/* 칸 너비를 똑같이 맞춰 줄마다 버블이 반듯하게 정렬되게 합니다 */}
+              <ul className="mt-5 grid grid-cols-3 gap-2 sm:grid-cols-4 md:grid-cols-3 lg:grid-cols-4">
                 {g.districts.map((d) => (
-                  <li key={d} className="rounded-full border border-slate-200 bg-white px-3.5 py-1.5 text-sm font-medium text-slate-700">
+                  <li key={d} className="truncate rounded-full border border-slate-200 bg-white px-2 py-2 text-center text-sm font-medium text-slate-700">
                     {d}
                   </li>
                 ))}
