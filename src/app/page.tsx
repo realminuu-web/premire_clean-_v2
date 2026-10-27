@@ -3,6 +3,7 @@ import Header from '@/components/Header';
 import Hero from '@/components/Hero';
 import TrustBadges from '@/components/TrustBadges';
 import About from '@/components/About';
+import Team from '@/components/Team';
 import CleaningProcess from '@/components/CleaningProcess';
 import Services from '@/components/Services';
 import ReviewsSection from '@/components/Reviews/ReviewsSection';
@@ -23,6 +24,7 @@ const SECTION_COMPONENTS: Record<SectionId, React.ComponentType> = {
   hero: Hero,
   trustBadges: TrustBadges,
   about: About,
+  team: Team,
   process: CleaningProcess,
   services: Services,
   reviews: ReviewsSection,

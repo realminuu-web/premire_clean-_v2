@@ -7,6 +7,7 @@ import {
   InstagramPost,
   SectionId,
   ServiceDetail,
+  TeamMember,
 } from '@/types';
 
 /**
@@ -34,6 +35,7 @@ export const siteConfig = {
     'trustBadges',
     'process',
     'about',
+    'team',
     'reviews',
     'instagram',
     'contact',
@@ -47,6 +49,7 @@ export const siteConfig = {
     trustBadges: true,
     process: true,
     about: true,
+    team: true,
     reviews: true,
     instagram: false, // 인스타 연동 전까지 숨김
     contact: true,
@@ -293,6 +296,56 @@ export const siteConfig = {
       iconName: 'Camera',
     },
   ] as CoreValueItem[],
+
+  // -----------------------------------------------------------------------
+  // 7-1. 👥 팀 소개 (사진·이름·경력은 임시 예시 — 실제 직원 정보로 바꿔 주세요)
+  // -----------------------------------------------------------------------
+  team: {
+    title1: '현장을 책임지는',
+    title2: '프리미어 클린 직영 팀',
+    description: '외주 없이 본사 교육을 마친 직영 팀이 직접 갑니다. 처음 상담한 팀장이 마지막 검수까지 함께합니다.',
+    members: [
+      {
+        id: 'member-1',
+        photo: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=800&q=80',
+        role: '대표 · 품질 총괄',
+        name: '김O준',
+        career: '현장 경력 15년',
+        intro: '모든 현장의 체크리스트와 마지막 검수 기준을 직접 정합니다.',
+      },
+      {
+        id: 'member-2',
+        photo: 'https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=800&q=80',
+        role: '홈클리닝 팀장',
+        name: '이O영',
+        career: '입주·이사 청소 10년',
+        intro: '서랍 레일과 후드 필터처럼 안 보이는 곳부터 분해해 닦습니다.',
+      },
+      {
+        id: 'member-3',
+        photo: 'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&w=800&q=80',
+        role: '사업장 팀장',
+        name: '박O호',
+        career: '사무실·상가 관리 9년',
+        intro: '업무 시간을 피해 새벽·주말에 작업하고 월별 보고서를 드립니다.',
+      },
+      {
+        id: 'member-4',
+        photo: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=800&q=80',
+        role: '고객 상담 매니저',
+        name: '최O진',
+        career: '상담·일정 관리 7년',
+        intro: '견적부터 일정, 사후 A/S 접수까지 한 사람이 끝까지 안내합니다.',
+      },
+    ] as TeamMember[],
+    photo: 'https://images.unsplash.com/photo-1527515637462-cff94eecc1ac?auto=format&fit=crop&w=1400&q=80',
+    promiseTitle: '한 팀이 처음부터 끝까지 맡습니다',
+    promises: [
+      '본사 교육을 마친 정규 직원만 현장에 갑니다',
+      '상담한 팀장이 작업과 검수까지 직접 합니다',
+      '작업 전·중·후 사진으로 진행을 알려 드립니다',
+    ],
+  },
 
   // -----------------------------------------------------------------------
   // 8. 🧼 구역별 비포 & 애프터
@@ -638,6 +691,7 @@ export const siteConfig = {
     kakao: '카톡 1:1',
     quote: '견적 신청',
     kakaoTooltip: '실시간 1:1 카톡 상담',
+    floatingQuote: '견적 문의', // 컴퓨터 화면 오른쪽 아래 따라다니는 파란 버튼
   },
 
   // -----------------------------------------------------------------------

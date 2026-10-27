@@ -28,13 +28,30 @@ export function mergeContent<T>(base: T, override: unknown): T {
   return out as T;
 }
 
+/**
+ * 기본값 + 관리자 저장분을 합칩니다.
+ * 섹션 순서는 관리자가 저장한 순서를 쓰되, 그 뒤에 새로 생긴 섹션(예: 팀 소개)은
+ * 기본값에서 바로 앞에 있던 섹션 뒤에 끼워 넣어 사라지지 않게 합니다.
+ */
+export function buildContent(override: unknown): SiteContent {
+  const defaults = defaultContent();
+  const content = mergeContent(defaults, override ?? {});
+  const order = content.sectionOrder.filter((id) => defaults.sectionOrder.includes(id));
+  defaults.sectionOrder.forEach((id, i) => {
+    if (order.includes(id)) return;
+    const prev = defaults.sectionOrder[i - 1];
+    const at = prev ? order.indexOf(prev) + 1 : 0;
+    order.splice(at, 0, id);
+  });
+  return { ...content, sectionOrder: order };
+}
+
 /** 홈페이지에 보일 글·사진 (기본값 + 관리자 수정분) */
 export async function getContent(): Promise<SiteContent> {
   'use cache';
   cacheTag(CONTENT_TAG);
   cacheLife('max');
-  const override = await readKV<Partial<SiteContent>>(CONTENT_KEY);
-  return mergeContent(defaultContent(), override ?? {});
+  return buildContent(await readKV<Partial<SiteContent>>(CONTENT_KEY));
 }
 
 export async function getStoredReviews(): Promise<StoredReview[]> {

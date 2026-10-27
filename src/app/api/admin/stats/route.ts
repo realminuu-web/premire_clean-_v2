@@ -7,6 +7,7 @@ const SECTION_NAMES: Record<string, string> = {
   trust: '안심 보증',
   process: '비포·애프터',
   about: '시공 원칙',
+  team: '팀 소개',
   reviews: '시공 후기',
   instagram: '인스타그램',
   contact: '견적 신청',

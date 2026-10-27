@@ -107,60 +107,60 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="py-20 sm:py-24 lg:py-32 bg-slate-900 text-slate-100 relative overflow-hidden">
+    <section id="contact" className="py-20 sm:py-24 lg:py-32 bg-blue-50 text-slate-900 relative overflow-hidden">
       <div className="max-w-7xl 2xl:max-w-[1680px] 3xl:max-w-[1920px] mx-auto px-5 sm:px-6 lg:px-8 2xl:px-12 relative z-10">
-        <SectionHeading dark title1={t.title1} title2={t.title2} description={contact.formSubtitle} />
+        <SectionHeading title1={t.title1} title2={t.title2} description={contact.formSubtitle} />
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start">
-          
+
           {/* Left Contact Info & Brand Trust (4 Cols) */}
           <div className="lg:col-span-4 space-y-6">
-            
-            <div className="bg-gradient-to-br from-blue-950 via-slate-900 to-indigo-950 rounded-3xl p-7 text-white shadow-ambient-md border border-slate-800 space-y-6">
+
+            <div className="bg-blue-700 rounded-3xl p-7 text-white shadow-ambient-md space-y-6">
               <div className="space-y-2">
-                <span className="text-xs uppercase font-semibold tracking-wider text-sky-400">
+                <span className="text-xs font-semibold tracking-wider text-blue-100">
                   {t.centerLabel}
                 </span>
                 <h3 className="text-2xl font-bold tracking-tight">{t.phoneTitle}</h3>
                 <a
                   href={contact.phoneTel}
                   data-track="click_phone"
-                  className="inline-block text-3xl sm:text-4xl font-bold text-white tracking-tight hover:text-sky-300 transition-colors"
+                  className="inline-block text-3xl sm:text-4xl font-bold text-white tracking-tight hover:text-blue-100 transition-colors"
                 >
                   {contact.phone}
                 </a>
               </div>
 
-              <div className="space-y-3 pt-4 border-t border-slate-800 text-xs text-slate-300 font-normal">
+              <div className="space-y-3 pt-4 border-t border-white/20 text-xs text-blue-50 font-normal">
                 <div className="flex items-center gap-2.5">
-                  <Clock className="w-4 h-4 text-sky-400 flex-shrink-0" strokeWidth={1.75} />
+                  <Clock className="w-4 h-4 text-blue-200 flex-shrink-0" strokeWidth={1.75} />
                   <span>{t.hoursPrefix} {contact.operatingHours}</span>
                 </div>
                 <div className="flex items-center gap-2.5">
-                  <Phone className="w-4 h-4 text-sky-400 flex-shrink-0" strokeWidth={1.75} />
+                  <Phone className="w-4 h-4 text-blue-200 flex-shrink-0" strokeWidth={1.75} />
                   <span>{t.smsNote}</span>
                 </div>
                 <div className="flex items-center gap-2.5">
-                  <ShieldAlert className="w-4 h-4 text-sky-400 flex-shrink-0" strokeWidth={1.75} />
+                  <ShieldAlert className="w-4 h-4 text-blue-200 flex-shrink-0" strokeWidth={1.75} />
                   <span>{t.asNote}</span>
                 </div>
               </div>
             </div>
 
             {/* Quick Consultation Process Card */}
-            <div className="bg-slate-800/60 rounded-3xl p-6 border border-slate-700/60 space-y-4">
-              <h4 className="font-bold text-sm text-white">
+            <div className="bg-white rounded-3xl p-6 border border-blue-100 shadow-ambient-sm space-y-4">
+              <h4 className="font-bold text-sm text-slate-900">
                 {t.stepsTitle}
               </h4>
-              <div className="space-y-3 text-xs text-slate-300">
+              <div className="space-y-3 text-xs text-slate-600">
                 {t.steps.map((step, i) => (
                   <div key={i} className="flex items-start gap-3">
-                    <span className="w-5 h-5 rounded-full bg-blue-600 text-white font-bold flex items-center justify-center flex-shrink-0 text-[11px]">
+                    <span className="w-5 h-5 rounded-full bg-blue-700 text-white font-bold flex items-center justify-center flex-shrink-0 text-[11px]">
                       {i + 1}
                     </span>
                     <div>
-                      <strong className="text-white font-semibold">{step.title}</strong>
-                      <p className="text-[11px] text-slate-400 font-normal">{step.description}</p>
+                      <strong className="text-slate-900 font-semibold">{step.title}</strong>
+                      <p className="text-[11px] text-slate-500 font-normal">{step.description}</p>
                     </div>
                   </div>
                 ))}
@@ -170,7 +170,7 @@ export default function Contact() {
           </div>
 
           {/* Right Interactive Form (8 Cols) - Elevated Pure White Card */}
-          <div className="lg:col-span-8 bg-white text-slate-900 rounded-3xl p-6 sm:p-10 border border-slate-200/90 shadow-ambient-lg">
+          <div className="lg:col-span-8 bg-white text-slate-900 rounded-3xl p-6 sm:p-10 border border-blue-100 shadow-ambient-lg">
             
             <form onSubmit={handleSubmit} className="space-y-6">
               

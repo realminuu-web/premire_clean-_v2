@@ -34,6 +34,15 @@ export interface ServiceDetail {
   image: string;
 }
 
+export interface TeamMember {
+  id: string;
+  photo: string;
+  role: string;
+  name: string;
+  career: string;
+  intro: string;
+}
+
 /** 관리자가 올린 시공 후기 (published=false 면 홈페이지에서 숨김) */
 export interface StoredReview extends ReviewItem {
   published: boolean;
@@ -106,6 +115,7 @@ export type SectionId =
   | 'hero'
   | 'trustBadges'
   | 'about'
+  | 'team'
   | 'process'
   | 'services'
   | 'reviews'
