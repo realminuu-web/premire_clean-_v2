@@ -21,19 +21,19 @@
 
 ## 1. 처음 설정 (한 번만)
 
-관리자 페이지에서 고친 내용과 후기가 **모든 손님에게** 보이려면 온라인 저장소(Supabase)를 연결해야 합니다.
+관리자 페이지에서 고친 내용과 후기가 **모든 손님에게** 보이려면 온라인 저장소를 연결해야 합니다.
+글·후기·통계는 **Neon**(데이터베이스), 사진은 **Vercel Blob**(사진 보관함)에 저장합니다.
 연결 전에는 "미리보기 모드"라서 지금 쓰는 컴퓨터에만 저장됩니다 (관리자 페이지 맨 위에 노란 안내가 보여요).
 
-1. https://supabase.com 에서 무료 프로젝트를 하나 만듭니다.
-2. Supabase 화면 왼쪽 **SQL Editor** 를 열고, 이 폴더의 `supabase/setup.sql` 내용을 통째로 붙여넣고 **Run** 을 누릅니다.
-3. Supabase **Project Settings > API** 에서 두 값을 복사합니다.
-   - `Project URL`
-   - `service_role` 키 (⚠️ 비밀 키입니다. 절대 다른 사람에게 보여 주지 마세요)
-4. 홈페이지를 올린 곳(예: Vercel)의 **환경 변수**에 아래를 넣습니다. 개발 컴퓨터에서는 `.env.local` 파일에 넣습니다.
+1. Neon 프로젝트의 접속 주소(`DATABASE_URL`)를 준비합니다. 개발 컴퓨터에서는 `neon init` 이 `.env.local` 에 자동으로 넣어 줍니다.
+2. 표(테이블)는 `node --env-file=.env.local scripts/db-setup.mjs` 를 한 번 실행하면 만들어집니다 (내용: `db/schema.sql`).
+3. Vercel 에서 Blob 보관함을 만들어 홈페이지 프로젝트에 연결하면 `BLOB_READ_WRITE_TOKEN` 이 자동으로 생깁니다.
+4. 홈페이지를 올린 곳(Vercel)의 **환경 변수**에 아래를 넣습니다. 개발 컴퓨터에서는 `.env.local` 파일에 넣습니다.
+   (⚠️ `DATABASE_URL` 과 토큰은 비밀 값입니다. 절대 다른 사람에게 보여 주지 마세요)
 
 ```
-SUPABASE_URL=복사한 Project URL
-SUPABASE_SERVICE_ROLE_KEY=복사한 service_role 키
+DATABASE_URL=Neon 접속 주소
+BLOB_READ_WRITE_TOKEN=Vercel Blob 토큰
 ADMIN_PASSWORD=관리자 비밀번호 (길고 어렵게)
 ADMIN_SESSION_SECRET=아무 글자나 길게 (32자 이상, 로그인 유지용)
 NEXT_PUBLIC_SITE_URL=https://실제도메인
@@ -138,7 +138,7 @@ AI 검색과 지도 검색은 **홈페이지·네이버 플레이스·구글 비
 |---|---|
 | 로그인이 안 돼요 | 비밀번호를 8번 틀리면 10분간 잠깁니다. 잠시 뒤 다시 해 보세요. |
 | "비밀번호가 설정되지 않았습니다" | 1번 [처음 설정]의 `ADMIN_PASSWORD` 를 넣어 주세요. |
-| 저장했는데 다른 휴대폰에서 안 보여요 | 미리보기 모드(노란 안내)라면 Supabase 연결이 필요합니다. |
+| 저장했는데 다른 휴대폰에서 안 보여요 | 미리보기 모드(노란 안내)라면 Neon·Vercel Blob 연결이 필요합니다. |
 | 사진이 안 올라가요 | JPG·PNG·WEBP 만 됩니다. 아이폰 HEIC 사진은 [설정 > 카메라 > 포맷 > 높은 호환성]으로 찍어 주세요. |
 | 글을 잘못 바꿨어요 | 칸 옆 [기본값] 또는 맨 위 [전체 기본값으로] |
 
@@ -147,5 +147,5 @@ AI 검색과 지도 검색은 **홈페이지·네이버 플레이스·구글 비
 ### 개발자 참고
 - 기본값: `src/config/site.ts` (관리자 저장분이 그 위에 덮어씌워짐)
 - 관리자 칸 목록·위치 설명: `src/config/editorSchema.ts`
-- 저장소: `src/lib/store.ts` (Supabase 또는 로컬 `.data/`, `public/uploads/`)
+- 저장소: `src/lib/store.ts` (Neon + Vercel Blob, 연결 전에는 로컬 `.data/`, `public/uploads/`)
 - 견적 폼 이메일(EmailJS)·카톡 연동은 마지막 단계에서 연결 예정 (`src/lib/emailjs.ts`)

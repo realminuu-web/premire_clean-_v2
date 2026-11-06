@@ -12,7 +12,7 @@ import ContentPanel from './ContentPanel';
 import SeoPanel from './SeoPanel';
 import SectionsPanel from './SectionsPanel';
 
-type Session = { loggedIn: boolean; passwordConfigured: boolean; storage: 'supabase' | 'local'; devPassword: boolean };
+type Session = { loggedIn: boolean; passwordConfigured: boolean; storage: 'online' | 'local'; devPassword: boolean };
 type Tab = 'reviews' | 'stats' | 'content' | 'seo' | 'sections';
 
 const TABS: { id: Tab; label: string; icon: React.ElementType }[] = [
@@ -224,8 +224,8 @@ export default function AdminApp() {
         {session.storage === 'local' && (
           <div className="mb-5">
             <Notice tone="warn">
-              지금은 이 컴퓨터에만 저장되는 <b>미리보기 모드</b>예요. 실제 홈페이지에 올리기 전에 Supabase(온라인 저장소)를 연결해야 모든
-              손님에게 보입니다. (ADMIN_GUIDE.md [처음 설정] 참고)
+              지금은 이 컴퓨터에만 저장되는 <b>미리보기 모드</b>예요. 실제 홈페이지에 올리기 전에 온라인 저장소(Neon 데이터베이스와 Vercel
+              Blob 사진 보관함)를 연결해야 모든 손님에게 보입니다. (ADMIN_GUIDE.md [처음 설정] 참고)
             </Notice>
           </div>
         )}

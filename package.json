@@ -10,8 +10,11 @@
   },
   "dependencies": {
     "@emailjs/browser": "^5.0.3",
-    "@supabase/supabase-js": "^2.118.0",
+    "@neon/config": "^1.11.3",
+    "@neon/env": "^1.6.15",
+    "@neondatabase/serverless": "^1.2.0",
     "@types/canvas-confetti": "^1.9.0",
+    "@vercel/blob": "^2.8.2",
     "canvas-confetti": "^1.9.4",
     "framer-motion": "^14.3.0",
     "lucide-react": "^1.58.0",

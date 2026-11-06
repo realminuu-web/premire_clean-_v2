@@ -20,6 +20,10 @@ export async function api<T>(url: string, init?: RequestInit & { json?: unknown 
 /** 휴대폰 사진을 긴 변 1600px JPG 로 줄인 뒤 올립니다. */
 export async function uploadImage(file: File): Promise<string> {
   const resized = await shrink(file);
+  // Vercel 서버는 한 번에 4.5MB 까지만 받습니다. 줄인 사진은 보통 1MB 안쪽이에요.
+  if (resized.size > 4 * 1024 * 1024) {
+    throw new Error('사진이 너무 커요(4MB 초과). JPG·PNG 사진으로 다시 골라 주세요. 아이폰 HEIC 사진은 JPG로 바꿔 올려 주세요.');
+  }
   const form = new FormData();
   form.append('file', resized);
   const { url } = await api<{ url: string }>('/api/admin/upload', { method: 'POST', body: form });
